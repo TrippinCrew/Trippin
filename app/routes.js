@@ -3,7 +3,7 @@ module.exports = function(app) {
 // ****************** GETS START ******************** 
 
 app.get('/',function(req,res){
-	res.render('index');
+	res.sendFile('index.html');
 })
 
 
