@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/TrippinCrew/Trippin/issues"
   },
-  "homepage": "https://github.com/TrippinCrew/Trippin#readme"
+  "homepage": "https://github.com/TrippinCrew/Trippin#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "swig": "^1.4.2"
+  }
 }
