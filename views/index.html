@@ -1,14 +1,17 @@
-<html>
+{% extends 'layout.html' %}
 
-<head>
-</head>
+{% block head %} 
+{% parent %} 
+{% endblock %} 
 
-<body>
-<h1>Hello World!<h1>
+{% block content%}
+<h1>Hellow World</h1>
+{% endblock %} 
 
-</body>
+{% block footer %} 
+{% parent %} 
+{% endblock %} 
 
-
-
-
-</html>
+{% block scripts %} 
+{% parent %}
+{% endblock %}

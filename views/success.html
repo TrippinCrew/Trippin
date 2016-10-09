@@ -1,0 +1,20 @@
+{% extends 'layout.html' %} {% block head %} {% parent %}
+<style>
+.btn.loginFb {
+    color: #fff;
+    background-color: #566A9A;
+    border-color: #3B4662;
+    width: 100%;
+    height: 55px;
+}
+</style>
+{% endblock %} {% block content%}
+<h1>SUCCESS</h1> 
+
+
+<h2 style="text-underline:1 px">ACCOUNT DETAILS</h2>
+{% if user %}
+<p>{{user.username}}</p>
+<p>{{user.email}}</p>
+<img style="height:100px ;width:100px" src="{{user.pictureAdd}}"></img>
+{% endif %} {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
