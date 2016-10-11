@@ -6,14 +6,19 @@ var mongoose = require('mongoose');
 var placeSchema = mongoose.Schema({
     id: Number, //Identifier for places
     name: String, // Name of place
-    price: String, // price of place
-    opening: String, // opening hour
-    closing: String, // closing hour
-    address: Number, // Address
+    category: String, //Cat
+    utility: Number,
+    price: Number, // price of place
+    opening: Number, // opening hour
+    closing: Number, // closing hour
+    recommendedTime: Number, //Recommended time
+    address: String, // Address
+    postal: String, // Postalcode
+    lat: Number,
+    lng: Number,
     picture: String, //picture url/ title
     description: String, // Description of place
-    url: String, // trip advisor URL
-    geolocation: { type: [Number], index: '2d' }
+    url: String // trip advisor URL
 });
 
 
