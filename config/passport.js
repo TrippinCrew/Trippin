@@ -6,9 +6,11 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 // load up the user model
 var User = require('../app/models/users');
 
+var facebookGraphAPI = require('../public/appresources/scripts/facebookGraphAPI.js');
+
 // load the auth variables
 var configAuth = require('./auth');
-
+        
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
@@ -40,7 +42,7 @@ module.exports = function(passport) {
             clientID: configAuth.facebookAuth.clientID,
             clientSecret: configAuth.facebookAuth.clientSecret,
             callbackURL: configAuth.facebookAuth.callbackURL,
-            profileFields: ['id', 'displayName', 'email', 'photos'],
+            profileFields: ['id', 'displayName', 'email', 'photos',],
             passReqToCallback: true 
         },
 
@@ -48,8 +50,13 @@ module.exports = function(passport) {
         function(req , token, refreshToken, profile, done) {
             // asynchronous
             process.nextTick(function() {
+
                 // find the user in the database based on their facebook id
                 User.findOne({ 'facebook.id': profile.id }, function(err, user) {
+
+                    // facebookGraphAPI.getFbData(token, '/me/?fields=tagged_places', function(data){
+                    //     console.log(data);
+                    // });
 
                     // if there is an error, stop everything and return that
                     // ie an error connecting to the database

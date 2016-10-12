@@ -9,12 +9,57 @@
 }
 </style>
 {% endblock %} {% block content%}
-<h1>SUCCESS</h1> 
-
-
-<h2 style="text-underline:1 px">ACCOUNT DETAILS</h2>
-{% if user %}
+<h1>SUCCESS</h1>
+<h2 style="text-underline:1 px">ACCOUNT DETAILS</h2> {% if user %}
 <p>{{user.username}}</p>
 <p>{{user.email}}</p>
+<div id="result"></div>
+<div id="result1"></div>
 <img style="height:100px ;width:100px" src="{{user.pictureAdd}}"></img>
-{% endif %} {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
+{% endif %} {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+//FB
+window.fbAsyncInit = function() {
+    FB.init({
+        appId: '1806055156345638',
+        xfbml: true,
+        version: 'v2.6'
+    });
+
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            console.log('Logged in.');
+
+            FB.api('/me/?fields=friends', function(response) {
+            	console.log(response);
+                var idDiv = document.getElementById('result');
+                idDiv.innerHTML = JSON.stringify(response);
+            });
+
+            FB.api('/me/?fields=tagged_places', function(response) {
+                console.log(response);
+                var idDiv = document.getElementById('result1');
+                idDiv.innerHTML = JSON.stringify(response);
+            });
+
+        } else {
+            console.log('initiate FB login...');
+            FB.login();
+        }
+    });
+
+
+};
+
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+{% endblock %}

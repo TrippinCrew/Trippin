@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
         email        : String,
         username     : String,
         pictureAdd   : String,
-        postalcode   : String
+        postalcode   : String,
     }
 });
 
