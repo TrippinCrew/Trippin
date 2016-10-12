@@ -1,27 +1,50 @@
 <!doctype html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}//Add Name Here\\ {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Trippin'{% endblock %}</title>
     {% block head %}
+     <!-- ADD STYLE SHEETS HERE -->
+
+     <!-- Bootstrap css -->
+     <link rel="stylesheet" type="text/css" href="appresource/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+     <!-- Google font css -->
+     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Damion">
+     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway">
+     <link rel="stylesheet" type="text/css" href="appresource/css/global.css">
+     <link rel="stylesheet" type="text/css" href="appresource/css/font-awesome.min.css">
+
+
 
     {% endblock %}
 </head>
-
 <body>
     {% block menu %}
-
-    {% endblock %}
+    <!-- ADD MENU CONTENT HERE -->
+    {% endblock %} 
 
     {% block content%} 
-    {% endblock %}
+    <!-- ADD CONTENT HERE -->
+    {% endblock %} 
+
 
     {% block footer %}
-   
+    <!-- ADD FOOTER HERE -->
     {% endblock %} 
 
     {% block scripts %}
+    <!-- ADD SCRIPTS HERE -->
+
+    <script src="appresource/script/jquery.min.js"></script>
+    <script src="appresource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+        });
+    </script>
 
     {% endblock %}
 </body>

@@ -1,0 +1,46 @@
+.recommended-countries {
+    padding: 5% 0;
+}
+
+.country {
+    width: 343px;
+    height: 100px;
+    opacity: 0.65;
+    border-radius: 4px;
+    background-color: #efefef;
+    /*additional*/
+    margin-top: 15px;
+    padding: 7% 0;
+}
+
+.country.font {
+    font-family: Raleway;
+    font-size: 36px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #000000;
+}
+
+.vietnam {
+    background: url('https://www.ciee.org/teach/images/programs/vietnam/teach-in-vietnam/vietnam-1.jpg');
+    background-position-x: 0px;
+    background-position-y: 276px;
+}
+
+.thailand {
+    background: url('http://www.fleewinter.com/wp-content/uploads/2014/04/boat_wooden_canoe_local_thailand_beach_holiday_experience2.jpg');
+    background-position-x: -746px;
+    background-position-y: 530px;
+}
+
+.singapore {
+    background: url('http://static.vinepair.com/wp-content/uploads/2016/01/singapore-header.jpg');
+    background-position-x: -746px;
+    background-position-y: 191px;
+}
+
+.action-btn-holder {
+    margin-top: 30px;
+}

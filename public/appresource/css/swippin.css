@@ -1,0 +1,197 @@
+.background-title {
+    width: 375px;
+    height: 73px;
+    /*additonal for valign*/
+    display: table;
+}
+
+.Image {
+    width: 343px;
+    height: 245px;
+}
+
+.trippin {
+    width: 119px;
+    height: 55px;
+    font-family: Damion;
+    font-size: 40px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: -0.6px;
+    text-align: center;
+    color: #297fe4;
+    /*additonal for valign*/
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.background-card {
+    width: 343px;
+    height: 400px;
+    background-color: #fafafa;
+    border: solid 1px #e8e8e8;
+}
+
+.location {
+    width: 168px;
+    height: 24px;
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #000000;
+    /*additionall added cause it wasn't part of your css but showed on the UI when mouse over*/
+    /*margin-left: 15px;*/
+    /*margin-top: 15px;*/
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.place {
+    width: 80px;
+    height: 16px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #808080;
+    /*additionall added cause it wasn't part of your css but showed on the UI when mouse over*/
+    /*margin-left: 15px;*/
+    margin-bottom: 8px;
+    margin-left: 10px;
+}
+
+.description {
+    width: 313px;
+    height: 64px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #808080;
+    /*additionall added cause it wasn't part of your css but showed on the UI when mouse over*/
+    /*margin-left: 15px;*/
+    margin-left: 10px;
+}
+
+.btn {
+    width: 104px;
+    height: 40px;
+    border-radius: 4px;
+    /*additional*/
+    margin-top: 15px;
+    margin-left: 14px;
+}
+
+.btn.red {
+    background-color: #d9534f;
+    border: solid 1px #d9534f;
+    margin-left: 0px;
+}
+
+.btn.blue {
+    background-color: #31b0d5;
+    border: solid 1px #31b0d5;
+}
+
+.btn.green {
+    background-color: #5cb85c;
+    border: solid 1px #5cb85c;
+}
+
+.Times---FontAwesome {
+    width: 20px;
+    height: 20px;
+    font-family: FontAwesome;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #ffffff;
+}
+
+.Times---FontAwesome:before {
+    content: "\f00d";
+}
+
+.paper-plane---FontAwesome {
+    width: 20px;
+    height: 20px;
+    font-family: FontAwesome;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #ffffff;
+}
+
+.paper-plane---FontAwesome:before {
+    content: "\f1d9";
+}
+
+.Heart---FontAwesome {
+    width: 20px;
+    height: 20px;
+    font-family: FontAwesome;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #ffffff;
+}
+
+.Heart---FontAwesome:before {
+    content: "\f004";
+}
+
+.tinderslide-custom {
+    width: 100% !important;
+}
+
+.wrap.custom {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 420px;
+}
+
+#tinderslide .image {
+    width: 315px;
+    height: 245px;
+}
+
+#tinderslide li {
+    box-shadow: none;
+}
+
+.action-btn-holder {
+    margin-top: 20px;
+    margin-top: 3vh;
+}
+
+.signout {
+    width: 26px;
+    height: 28px;
+    font-family: FontAwesome;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #808080;
+    /*additional*/
+    position: absolute;
+    margin-left: 80px;
+    top: 21px;
+}
+
+.signout:before {
+    content: "\f08b";
+}

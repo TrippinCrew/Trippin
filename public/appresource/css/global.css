@@ -1,0 +1,129 @@
+.t-center {
+    text-align: center;
+}
+
+.m-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.m-container {
+    width: 375px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+    margin-top: 3vh;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+    margin-top: 2.3vh;
+}
+
+.g-signout {
+    width: 26px;
+    height: 28px;
+    font-family: FontAwesome;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #808080;
+    /*additional*/
+    position: absolute;
+    margin-left: 80px;
+    top: 16px;
+}
+
+.g-signout:before {
+    content: "\f08b";
+}
+
+.g-back {
+    width: 26px;
+    height: 28px;
+    font-family: FontAwesome;
+    font-size: 28px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #808080;
+    /*additional*/
+    position: absolute;
+    top: 18px;
+    margin-left: 16px;
+}
+
+.g-back:before {
+    content: "\f053";
+}
+
+.g-trippin {
+    width: 119px;
+    height: 55px;
+    font-family: Damion;
+    font-size: 40px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: -0.6px;
+    text-align: center;
+    color: #297fe4;
+    /*additonal for valign*/
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.g-background-title {
+    width: 375px;
+    height: 73px;
+    /*additonal for valign*/
+    display: table;
+}
+
+.g-page-content {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.g-header_v1 {
+    width: 127px;
+    height: 24px;
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #808080;
+    /*additional*/
+    margin-top: 16px;
+}
+
+.g-submit-btn {
+    width: 111px;
+    height: 24px;
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #ffffff;
+}
+
+.g-submit {
+    width: 343px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #5cb85c;
+    border: solid 1px #5cb85c;
+    /*additional*/
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 2;
+}

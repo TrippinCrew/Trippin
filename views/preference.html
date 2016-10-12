@@ -1,0 +1,36 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" type="text/css" href="appresource/css/preference.css"> {% endblock %} {% block content%}
+<div class="m-container">
+    <!-- ADD CONTENT HERE -->
+    <div class="g-background-title m-center">
+        <a href="/swippin"><span class="g-back"></span></a><h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+    </div>
+    <div class="date-content">
+        <div class="Travel-Period">Travel Period</div>
+        <div class="period-holder">
+            <span class="icon-holder"><span class="calendar"></span></span>
+            <input id="input-start-period" class="txt-bx" type="text" placeholder="&nbsp;&nbsp;Starting date of trip" />
+        </div>
+        </br>
+        </br>
+        <div class="period-holder">
+            <span class="icon-holder"><span class="calendar"></span></span>
+            <input id="input-end-period" class="txt-bx" type="text" placeholder="&nbsp;&nbsp;Starting date of trip" />
+        </div>
+    </div>
+    <div class="budget-content">
+        <div class="Travel-Period">Budget</div>
+        <div class="period-holder">
+            <span class="icon-holder"><span class="calendar"></span></span>
+            <input id="input-budget" class="txt-bx" type="text" placeholder="&nbsp;&nbsp;Starting date of trip" />
+        </div>
+    </div>
+    <div class="action-btn-holder">
+        <a href="/recommendation" class="g-submit-btn">
+            <div class="g-submit">
+                I'M ALL SET
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}

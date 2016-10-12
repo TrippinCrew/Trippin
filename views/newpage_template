@@ -1,0 +1,11 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+
+<link rel="stylesheet" href="appresource/css/welcome.css">
+
+{% endblock %} {% block content%}
+
+<!-- ADD CONTENT HERE -->
+
+
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+{% endblock %}

@@ -6,20 +6,37 @@ module.exports = function(app, passport) {
     var User = require('./models/users');
     var ObjectId = require('mongoose').Types.ObjectId;
 
+    var isDevelopment = true;
     // ****************** GETS START ******************** 
 
     app.get('/', function(req, res) {
-        res.render('index');
+        res.render('welcome');
     });
 
+    app.get('/swippin', function(req, res) {
+        if (true) {
+            res.render('swippin');
+        } else {
+            var user = req.user.facebook;
+            res.render('swippin', { user: user });
+        }
+    });
+
+    app.get('/preference', function(req, res) {
+            res.render('preference');
+    });
+
+    app.get('/recommendation', function(req, res) {
+            res.render('recommendation');
+    });
 
     app.get('/facebook', function(req, res) {
         res.render('facebook');
     });
 
     app.get('/success', function(req, res) {
-    	var user = req.user.facebook;
-        res.render('success', {user: user });
+        var user = req.user.facebook;
+        res.render('success', { user: user });
     });
 
     app.get('/failed', function(req, res) {
@@ -44,7 +61,7 @@ module.exports = function(app, passport) {
 
     // handle the callback after facebook has authenticated the user (SIGNUP)
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-        successRedirect: '/success',
+        successRedirect: '/swippin',
         failureRedirect: '/failed'
     }));
 

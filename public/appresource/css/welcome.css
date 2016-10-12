@@ -1,0 +1,132 @@
+.Trippin {
+    width: 256px;
+    height: 118px;
+    font-family: Damion;
+    font-size: 86px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: -1.4px;
+    /*text-align: left;*/
+    color: #297fe4;
+    /*additional*/
+    margin-top: 150px;
+    text-align: center;
+}
+
+.btn.loginFb {
+    width: 300px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #3b5998;
+    border: solid 1px #3b5998;
+    /*additional*/
+    margin-top: 48px;
+}
+
+.Made-by-TrippinCrew {
+    width: 146px;
+    height: 14px;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #000000;
+}
+
+.Go-to-places-that-ma {
+    /*width: 302px;*/
+    height: 33px;
+    font-family: Raleway;
+    font-size: 28px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: -0.4px;
+    /*text-align: left;*/
+    color: #00479b;
+    /*additional*/
+    text-align: center;
+}
+
+.Login-with-Facebook {
+    width: 158px;
+    height: 19px;
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #ffffff;
+}
+
+.facebook-official---FontAwesome {
+    width: 20px;
+    height: 20px;
+    font-family: FontAwesome;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #ffffff;
+    /*additional*/
+    margin-right: 6px;
+}
+
+.facebook-official---FontAwesome:before {
+    content: "\f230";
+}
+
+.Made-by-TrippinCrew {
+    width: 146px;
+    height: 14px;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #000000;
+}
+
+.Heart---FontAwesome {
+    width: 12px;
+    height: 12px;
+    font-family: FontAwesome;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #ff4343;
+    /*additional*/
+    margin-left: 2px;
+}
+
+.Heart---FontAwesome:before {
+    content: "\f004";
+}
+
+.foot-holder {
+    margin-top: 194px;
+    text-align: center;
+}
+
+.Background {
+    /*  width: 375px;
+    height: 667px;
+    opacity: 0.75;
+    background-color: #ffffff;
+*/
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+    background-color: #ffffff;
+    display: inline;
+    position: absolute;
+    top:0px;
+    z-index: -1;
+}

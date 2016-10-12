@@ -1,0 +1,21 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+
+<link rel="stylesheet" href="appresource/css/welcome.css">
+
+{% endblock %} {% block content%}
+
+<div class="m-container">
+	<!-- ADD CONTENT HERE -->
+
+	<!-- Header -->
+	<div class="g-background-title m-center">
+	    <a href="/preference"><span class="g-back"></span></a><h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+	</div>
+	<!-- Page Content -->
+	<div class="g-page-content">
+		<h4>Put content here</h4>
+	</div>
+</div>
+
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+{% endblock %}

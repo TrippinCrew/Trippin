@@ -1,0 +1,90 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" type="text/css" href="appresource/jTinder-master/css/jTinder.css">
+<link rel="stylesheet" type="text/css" href="appresource/css/swippin.css"> {% endblock %} {% block content%}
+<!-- ADD CONTENT HERE -->
+<div class="m-container">
+    <div class="g-background-title m-center">
+        <h1 class="g-trippin">Trippin'<span class="signout"></span></h1>
+    </div>
+    <!-- start padding container -->
+    <div class="wrap custom">
+        <!-- start jtinder container -->
+        <div id="tinderslide" class="tinderslide-custom">
+            <ul>
+                <li class="pane1">
+                    <div><img class="image" src="http://cdn.ek.aero/english/images/Phuket_tcm233-2256631.jpg"></div>
+                    <div class="location">Marina Bay Sands</div>
+                    <div class="place">
+                        Singapore
+                    </div>
+                    <div class="description">
+                        Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
+                    </div>
+                    <div class="like"></div>
+                    <div class="dislike"></div>
+                </li>
+                <li class="pane2">
+                    <div><img class="image" src="http://www.yoursingapore.com/see-do-singapore/recreation-leisure/resorts/marina-bay-sands/_jcr_content/par-carousel/carousel_detailpage/carousel/item_1.thumbnail.carousel-img.740.416.jpg"></div>
+                    <div class="location">Marina Bay Sands</div>
+                    <div class="place">
+                        Singapore
+                    </div>
+                    <div class="description">
+                        Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
+                    </div>
+                    <div class="like"></div>
+                    <div class="dislike"></div>
+                </li>
+                <li class="pane3">
+                    <div><img class="image" src="http://cdn.rsvlts.com/wp-content/uploads/2013/10/Godafoss.jpg"></div>
+                    <div class="location">Marina Bay Sands</div>
+                    <div class="place">
+                        Singapore
+                    </div>
+                    <div class="description">
+                        Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
+                    </div>
+                    <div class="like"></div>
+                    <div class="dislike"></div>
+                </li>
+            </ul>
+        </div>
+        <!-- end jtinder container -->
+    </div>
+    <!-- end padding container -->
+    <!-- <div class="background-card m-center">
+    <img class="Image" src="http://cdn.ek.aero/english/images/Phuket_tcm233-2256631.jpg">
+    <div class="location">
+        Marina Bay Sands
+    </div>
+    <div class="place">
+        Singapore
+    </div>
+    <div class="description">
+        Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
+    </div>
+</div> -->
+    <div class="action-btn-holder t-center">
+        <a id="dislike-btn" class="btn red dislike" href="javascript:void(0)"><span class="Times---FontAwesome"></span></a>
+        <a class="btn blue" href="/preference"><span class="paper-plane---FontAwesome"></span></a>
+        <a id="like-btn" class="btn green like" href="javascript:void(0)"><span class="Heart---FontAwesome"></span></a>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<!-- transform2d lib -->
+<script type="text/javascript" src="appresource/jTinder-master/js/jquery.transform2d.js"></script>
+<!-- jTinder lib -->
+<script type="text/javascript" src="appresource/jTinder-master/js/jquery.jTinder.js"></script>
+<!-- jTinder initialization script -->
+<script type="text/javascript" src="appresource/jTinder-master/js/main.js"></script>
+<script>
+$("#dislike-btn").click(function() {
+    $("#tinderslide").jTinder('dislike');
+});
+
+$("#like-btn").click(function() {
+    $("#tinderslide").jTinder('like');
+
+});
+</script>
+{% endblock %}

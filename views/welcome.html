@@ -1,0 +1,23 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/welcome.css"> {% endblock %} {% block content%}
+<!-- ADD CONTENT HERE -->
+<!-- <div class="Background"> -->
+<div class="m-container">
+    <img src="http://www.mrwallpaper.com/wallpapers/Chilling-at-Beach-1920x1200.jpg" class="Background" />
+    <h1 class="Trippin m-center">Trippin'</h1>
+    <div class="Go-to-places-that-ma">
+        Go to places that matter
+    </div>
+    <div class="t-center">
+        <a href="/auth/facebook">
+            <button class="btn loginFb" type="button"><span class="facebook-official---FontAwesome"></span>
+                <font class="Login-with-Facebook">Login With Facebook</font>
+            </button>
+        </a>
+    </div>
+    <div class="foot-holder">
+        <font class="Made-by-TrippinCrew">Made by TrippinCrew with</font><span class="Heart---FontAwesome"></span>
+    </div>
+</div>
+<!-- </div> -->
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
