@@ -120,6 +120,66 @@ module.exports = function(app, passport) {
         });
     });
 
+    //Shouldnt be API call but do first
+    app.get("/recommendTopThree", function(req, res) {
+        /*
+            Input from front : userid
+        */
+
+        UserPreference.aggregate([{ "$match": { "userid": "A", "isliked": 1 } },{ "$group": { "_id":"$city", "count": { "$sum": 1 } } }], function(err, doc) {
+            if (err) {
+                throw err;
+            }
+            console.log(doc);
+            doc.sort(function(a,b){return b.count-a.count});
+            var returnDoc = doc.slice(0,3);
+            res.json(returnDoc); //[{"_id":"SG","count":2},{"_id":"MY","count":2},{"_id":"TK","count":1}]
+
+        });
+
+
+        // UserPreference.find({ "userid": "A" }, "userid placeid city", { "sort": { "city": 1 } }, function(err, doc) {
+
+
+        //     if (err) {
+        //         throw err;
+        //     }
+        //     var map = {};
+        //     for (var i = 0; i < doc.length; i++) {
+        //         if (map[doc.city] == undefined) {
+        //             map[doc.city] = 1;
+        //         } else {
+        //             var count = map[doc.city];
+        //             map[doc.city] = count + 1;
+        //         }
+        //     }
+
+        //     var keys = Object.keys(map);
+
+        //     var top3Array = [];
+
+        //     for (i = 0; i < keys.length; i++) {
+        //         if (top3Array.length < 3) {
+        //             top3Array.push({ city: keys[i], count: map[keys[i]] });
+        //         } else {
+        //             for (f = 0; f < 3; f++) {
+        //                 var obj = map[keys[i]];
+        //                 var can = top3Array[f];
+        //                 if (obj > top3Array[f].count) {
+        //                     top3Array[f] = { city: keys[i], count: map[keys[i]] }
+        //                 }
+        //             }
+        //         }
+        //     }
+
+        //     res.json(top3Array);
+        // })
+
+
+    });
+
+
+
 
 
 
