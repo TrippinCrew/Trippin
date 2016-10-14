@@ -4,7 +4,9 @@ var mongoose = require('mongoose');
 // define the schema for our place model
 
 var placeSchema = mongoose.Schema({
-    id: Number, //Identifier for places
+    //_id: will be used to identify <---- auto populated
+    // id: Number, //Identifier for places <Omitted>
+    city: String, // City which the place is in
     name: String, // Name of place
     category: String, //Cat
     utility: Number,
