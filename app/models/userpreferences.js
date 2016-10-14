@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 var userPreferenceSchema = mongoose.Schema({
     userid: String,
     placeid: String,
-    isliked: Number
+    isliked: Number, // 0 = dislike , 1 = like;
+    city: String
 });
 
 

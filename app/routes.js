@@ -98,13 +98,27 @@ module.exports = function(app, passport) {
     // });
 
 
-    // //API to store user preference
-    // app.get('/api/insertPreference') {
-    //     //required information
-    //     // userid ,place id , isLiked
+    //API to store user preference
+    app.get('/api/insertPreference', function(req, res) {
+        //required information
+        // userid ,place id , isLiked, city
+        /*
+            Get input from ajax
+        */
+        var newUserPreference = new UserPreference();
+        newUserPreference.userid = "Insert userid";
+        newUserPreference.placeid = "Insert placeid";
+        newUserPreference.isliked = 1;
+        newUserPreference.city = "Insert city";
 
+        newUserPreference.save(function(err) {
+            if (err) {
+                throw err;
+            }
 
-    // }
+            res.json({ 'status': 'success' }); // for success
+        });
+    });
 
 
 
