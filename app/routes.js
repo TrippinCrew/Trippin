@@ -36,9 +36,9 @@ module.exports = function(app, passport) {
     // ****************** POST START ******************** 
 
 
-    app.get('/api/getAllPlaces', function(req,res){
+    app.get('/api/getAllPlaces', function(req, res) {
         Place.find({}, function(err, places) {
-            if(err){
+            if (err) {
                 throw err;
             }
 
@@ -47,9 +47,9 @@ module.exports = function(app, passport) {
 
     });
 
-    app.get('/api/getAllUsers', function(req,res){
-        User.find({},function(err, doc){
-            if(err){
+    app.get('/api/getAllUsers', function(req, res) {
+        User.find({}, function(err, doc) {
+            if (err) {
                 throw err;
             }
 
@@ -57,14 +57,14 @@ module.exports = function(app, passport) {
 
         });
 
-        
+
 
     });
 
 
-    app.get('/api/getAllUserPreferences',function(req,res){
-        UserPreference.find({},function(err, doc){
-            if(err){
+    app.get('/api/getAllUserPreferences', function(req, res) {
+        UserPreference.find({}, function(err, doc) {
+            if (err) {
                 throw err;
             }
 
@@ -73,6 +73,99 @@ module.exports = function(app, passport) {
         });
 
     });
+
+
+    //API to send frontend array of like dislikes etc
+    app.get('/api/getAllUserArrays', function(req, res) {
+        var userid = req.query.userid; // means users id will be one of the parameters
+
+        // 1 array for likes  pos 0
+        // 1 array for dislikes pos 1
+        // 1 array for remain pos 2
+        Place.find({}, function(err, places) {
+            if (err) {
+                throw err;
+            }
+            UserPreference.find({ "userid": req.query.userid }, function(err1, userpreferences) {
+                if (err1) {
+                    throw err1;
+                }
+                if (userpreferences.length == 0) {
+                    replyArray([], [], places);
+                } else {
+                    var HashMap = require('hashmap');
+                    var map = new HashMap();
+
+                    for (var i = 0; i < userpreferences.length; i++) {
+                        // console.log("userid-" + userid);
+                        // console.log("userpreferences.placeid-" + userpreferences[i].placeid);
+                        // console.log("userpreferences.isliked-" + userpreferences[i].isliked);
+                        if (parseInt(userpreferences[i].isliked) == 1) {
+                            map.set(userpreferences[i].placeid, 1);
+
+                        } else {
+                            map.set(userpreferences[i].placeid, 0);
+
+                        }
+
+                        // map.set(userpreferences[i].placeid, userpreferences.isliked);
+                        // map[userpreferences[i].placeid] = userpreferences.isliked; // all preferences found will be saved as true on the map
+                    }
+                    var like = [];
+                    var dislike = [];
+                    var remain = [];
+                    for (var j = 0; j < places.length; j++) {
+                        var value = map.get(places[j]._id.toString());
+                        if (value == 1) {
+                            like.push(places[j]);
+                        } else if (value == 0) {
+                            dislike.push(places[j]);
+                        } else {
+                            remain.push(places[j]);
+                        }
+                    }
+                    replyArray(like, dislike, remain);
+                }
+            });
+
+
+        });
+
+        function replyArray(like, dislike, remain) {
+            var replyArray = [like, dislike, remain]; //position 0 will be like , 1 will be dislike , 2 will be remain
+            res.json(replyArray);
+        }
+
+
+
+    });
+
+
+    //API to send frontend array of like dislikes etc
+    app.get('/api/getAllUserArraysByCityTopThree', function(req, res) {
+        var userid = req.query.userid; // means users id will be one of the parameters
+
+        UserPreference.aggregate([{ "$match": { "userid": userid, "isliked": 1 } }, { "$group": { "_id": "$city", "count": { "$sum": 1 } } }], function(err, doc) {
+            if (err) {
+                throw err;
+            }
+            doc.sort(function(a, b) {
+                return b.count - a.count;
+            });
+            var returnDoc = doc.slice(0, 3);
+
+            res.json(returnDoc); //[{"_id":"SG","count":2},{"_id":"MY","count":2},{"_id":"TK","count":1}]
+
+        });
+
+
+
+    });
+
+
+
+
+
 
     //API that gets all places that user has not shown preference
     app.get('/api/getPlacesBundle', function(req, res) {
@@ -165,58 +258,33 @@ module.exports = function(app, passport) {
             Input from front : userid
         */
 
-        UserPreference.aggregate([{ "$match": { "userid": "A", "isliked": 1 } },{ "$group": { "_id":"$city", "count": { "$sum": 1 } } }], function(err, doc) {
+        UserPreference.aggregate([{ "$match": { "userid": "A", "isliked": 1 } }, { "$group": { "_id": "$city", "count": { "$sum": 1 } } }], function(err, doc) {
             if (err) {
                 throw err;
             }
-            doc.sort(function(a,b){return b.count-a.count});
-            var returnDoc = doc.slice(0,3);
+            doc.sort(function(a, b) {
+                return b.count - a.count
+            });
+            var returnDoc = doc.slice(0, 3);
             res.json(returnDoc); //[{"_id":"SG","count":2},{"_id":"MY","count":2},{"_id":"TK","count":1}]
 
         });
 
-
-        // UserPreference.find({ "userid": "A" }, "userid placeid city", { "sort": { "city": 1 } }, function(err, doc) {
-
-
-        //     if (err) {
-        //         throw err;
-        //     }
-        //     var map = {};
-        //     for (var i = 0; i < doc.length; i++) {
-        //         if (map[doc.city] == undefined) {
-        //             map[doc.city] = 1;
-        //         } else {
-        //             var count = map[doc.city];
-        //             map[doc.city] = count + 1;
-        //         }
-        //     }
-
-        //     var keys = Object.keys(map);
-
-        //     var top3Array = [];
-
-        //     for (i = 0; i < keys.length; i++) {
-        //         if (top3Array.length < 3) {
-        //             top3Array.push({ city: keys[i], count: map[keys[i]] });
-        //         } else {
-        //             for (f = 0; f < 3; f++) {
-        //                 var obj = map[keys[i]];
-        //                 var can = top3Array[f];
-        //                 if (obj > top3Array[f].count) {
-        //                     top3Array[f] = { city: keys[i], count: map[keys[i]] }
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        //     res.json(top3Array);
-        // })
-
-
     });
 
+    var request = require('request');
 
+    app.get("/test", function(req, res) { //ensure that there's an id field
+        request('http://128.199.235.198:8080/TripEngine/TripEngine?cashFlow=500&travelDays=3&startTime=800&endTime=2000&startAddress=&endAddress=&mustGo=&preferences=', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body) // Show the HTML for the Google homepage.
+            }
+
+            var jsonObject = JSON.parse(body);
+            console.log(jsonObject);
+            res.json(jsonObject);
+        });
+    });
 
 
 
