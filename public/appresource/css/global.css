@@ -23,6 +23,25 @@
     margin-top: 2.3vh;
 }
 
+.g-profile {
+    width: 26px;
+    height: 28px;
+    font-family: FontAwesome;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #808080;
+    /*additional*/
+    position: absolute;
+    margin-left: 80px;
+    top: 16px;
+}
+
+.g-profile:before{
+    content: "\f007";
+}
+
 .g-signout {
     width: 26px;
     height: 28px;

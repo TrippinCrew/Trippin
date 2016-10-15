@@ -1,0 +1,26 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+
+<link rel="stylesheet" href="appresource/css/profile.css"> {% endblock %} {% block content%}
+
+<div class="m-container">
+	<!-- ADD CONTENT HERE -->
+
+	<!-- Header -->
+	<div class="g-background-title m-center">
+		<a href="javascript:history.back()"><span class="g-back"></span></a>
+		<h1 class="g-trippin">Trippin'</h1><span class="g-profile"></span>
+	</div>
+	<!-- Page Content -->
+	<div class="g-page-content">
+		<div class="profile-wrapper">
+			<div class="btn-trippin-wrapper">
+				<a href="#" class="btn btn-block btn-primary btn-trip-archives">TRIP ARCHIVES</a>
+			</div>
+			<div class="btn-trippin-wrapper">
+				<a href="#" class="btn btn-block btn-primary btn-logout">LOGOUT</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}

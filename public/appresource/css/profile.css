@@ -1,0 +1,22 @@
+.btn-trip-archives{
+    background-color: #025aa5;
+    border: solid 1px #025aa5;
+    padding-top:8px;
+    padding-bottom:8px;
+    font-family: Raleway;
+    font-weight: bold;
+}
+
+.btn-logout{
+    background-color: #c9302c;
+	border: solid 1px #c9302c;
+    padding-top:8px;
+    padding-bottom:8px;
+    font-family: Raleway;
+    font-weight: bold;
+}
+
+.btn-trippin-wrapper{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
