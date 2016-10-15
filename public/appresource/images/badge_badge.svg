@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
+    <title>3A07A3D7-BD7E-485C-98AF-E4FD993D4AF0</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Prototype" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="End" transform="translate(-101.000000, -109.000000)">
+            <g id="Badge" transform="translate(101.000000, 109.000000)">
+                <circle id="Oval" fill="#004785" cx="90" cy="90" r="90"></circle>
+                <circle id="Oval" fill="#0275D8" cx="90" cy="90" r="80"></circle>
+                <text id="" font-family="FontAwesome" font-size="80" font-weight="normal" fill="#96CFFF">
+                    <tspan x="44" y="120"></tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

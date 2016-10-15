@@ -6,9 +6,10 @@ module.exports = function(app, passport) {
     var User = require('./models/users');
     var Place = require('./models/places');
     var UserPreference = require('./models/userpreferences');
+    var DistanceMatrix = require('./models/distancematrixs');
     var ObjectId = require('mongoose').Types.ObjectId;
 
-    var isDevelopment = true;
+    var isDevelopment = false;
     // ****************** GETS START ******************** 
 
     app.get('/', function(req, res) {
@@ -16,20 +17,22 @@ module.exports = function(app, passport) {
     });
 
     app.get('/swippin', function(req, res) {
-        if (true) {
+        if (isDevelopment) {
             res.render('swippin');
         } else {
-            var user = req.user.facebook;
+            console.log(req.user);
+            var user = req.user;
             res.render('swippin', { user: user });
         }
     });
 
     app.get('/preference', function(req, res) {
-            res.render('preference');
+        res.render('preference');
     });
 
     app.get('/recommendation', function(req, res) {
-            res.render('recommendation');
+        var user = req.user;
+        res.render('recommendation', { user: user });
     });
 
     app.get('/facebook', function(req, res) {
@@ -62,6 +65,14 @@ module.exports = function(app, passport) {
 
     // ****************** POST START ******************** 
 
+    app.get('/api/getAllDistanceMatrix', function(req, res) {
+        DistanceMatrix.find({}, function(err, dm) {
+            if (err) {
+                throw err;
+            }
+            res.json(dm);
+        });
+    });
 
     app.get('/api/getAllPlaces', function(req, res) {
         Place.find({}, function(err, places) {
@@ -87,7 +98,6 @@ module.exports = function(app, passport) {
 
 
     });
-
 
     app.get('/api/getAllUserPreferences', function(req, res) {
         UserPreference.find({}, function(err, doc) {
@@ -265,10 +275,10 @@ module.exports = function(app, passport) {
             Get input from ajax
         */
         var newUserPreference = new UserPreference();
-        newUserPreference.userid = "Insert userid";
-        newUserPreference.placeid = "Insert placeid";
-        newUserPreference.isliked = 1;
-        newUserPreference.city = "Insert city";
+        newUserPreference.userid = req.query.userid;
+        newUserPreference.placeid = req.query.placeid;
+        newUserPreference.isliked = req.query.isliked;
+        newUserPreference.city = req.query.city;
 
         newUserPreference.save(function(err) {
             if (err) {
@@ -284,7 +294,7 @@ module.exports = function(app, passport) {
         /*
             Input from front : userid
         */
-
+        var userid = req.query.userid;
         UserPreference.aggregate([{ "$match": { "userid": "A", "isliked": 1 } }, { "$group": { "_id": "$city", "count": { "$sum": 1 } } }], function(err, doc) {
             if (err) {
                 throw err;

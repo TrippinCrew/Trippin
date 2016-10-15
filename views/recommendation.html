@@ -8,18 +8,205 @@
         <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
     </div>
     <div class="g-page-content">
-        <div class="g-header_v1">Country</div>
+        <div class="Progress-1 pref"></div>
+        <div class="t-center">
+            <font class="txt-header">Which </font>
+            <font class=" txt-header text-style-blue">city</font>
+            <font class="txt-header"> do you want to travel to?</font>
+        </div>
         <div class="recommended-countries">
             <a href="javascript:void(0)">
-                <div class="country font vietnam">Vietnam</div>
+                <div id="recommend1-btn" class="country font vietnam">Vietnam</div>
             </a>
             <a href="javascript:void(0)">
-                <div class="country font thailand">Thailand</div>
+                <div id="recommend2-btn" class="country font thailand">Thailand</div>
             </a>
             <a href="javascript:void(0)">
-                <div class="country font singapore">Singapore</div>
+                <div id="recommend3-btn" class="country font singapore">Singapore</div>
             </a>
         </div>
     </div>
 </div>
-{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+$().ready(function() {
+    getUsersPref();
+    getTop3Cities();
+    yishyAPI(top3cities);
+    populateTop3();
+});
+
+var top3cities = [];
+var userPref = []; // [[like],[dislike],[remain]]
+var recommend1 = [
+    [],
+    [],
+    []
+];
+var recommend2 = [
+    [],
+    [],
+    []
+];
+var recommend3 = [
+    [],
+    [],
+    []
+];
+
+var distanceData = [];
+
+function getTop3Cities() {
+    $.ajax({
+            method: "GET",
+            url: "/api/getAllUserArraysByCityTopThree?userid=" + getUserId(),
+            async: false
+        })
+        .done(function(res) {
+            console.log(res);
+            top3cities = res;
+        });
+}
+
+function yishyAPI(top3cities) {
+    var like = userPref[0];
+    var dislike = userPref[1];
+    var remain = userPref[2];
+
+    var recomCity1 = top3cities[0]._id;
+    var recomCity2 = top3cities[1]._id;
+    var recomCity3 = top3cities[2]._id;
+
+
+
+    for (var i = 0; i < like.length; i++) {
+        if (like[i].city == recomCity1) {
+            recommend1[0].push(like[i]);
+        } else if (like[i].city == recomCity2) {
+            recommend2[0].push(like[i]);
+        } else if (like[i].city == recomCity3) {
+            recommend3[0].push(like[i]);
+
+        }
+
+    }
+
+    for (var i = 0; i < dislike.length; i++) {
+        if (dislike[i].city == recomCity1) {
+            recommend1[1].push(dislike[i]);
+        } else if (dislike[i].city == recomCity2) {
+            recommend2[1].push(dislike[i]);
+        } else if (dislike[i].city == recomCity3) {
+            recommend3[1].push(dislike[i]);
+
+        }
+
+    }
+
+    for (var i = 0; i < remain.length; i++) {
+        if (remain[i].city == recomCity1) {
+            recommend1[2].push(remain[i]);
+        } else if (remain[i].city == recomCity2) {
+            recommend2[2].push(remain[i]);
+        } else if (remain[i].city == recomCity3) {
+            recommend3[2].push(remain[i]);
+
+        }
+
+    }
+
+    
+    console.log(recommend1);
+    console.log(recommend2);
+    console.log(recommend3);
+    
+
+
+    // for (var i = 0; i < top3cities.length; i++) {
+    //     for (var j = 0; j < userPref.length; j++) {
+    //         for(var x = 0; x < user)
+    //         if (userPref[j].city == top3cities[0].city) {
+
+    //         }
+    //     }
+    // }
+}
+
+function getUsersPref() {
+    $.ajax({
+            method: "GET",
+            url: "/api/getAllUserArrays?userid=" + getUserId(),
+            async: false
+        })
+        .done(function(res) {
+            userPref = res;
+            // console.log(userPref);
+        });
+}
+
+
+function populateTop3() {
+    $('#recommend1-btn').html(top3cities[0]._id);
+    $('#recommend2-btn').html(top3cities[1]._id);
+    $('#recommend3-btn').html(top3cities[2]._id);
+
+}
+
+$('#recommend1-btn').click(function() {
+recommend1
+});
+
+$('#recommend2-btn').click(function() {
+recommend2
+});
+
+$('#recommend3-btn').click(function() {
+recommend3
+});
+
+
+function getDistanceMatrix(){
+    $.ajax({
+            method: "GET",
+            url: "/api/getAllDistanceMatrix",
+            async: false
+        })
+        .done(function(res) {
+            distanceData = res;
+        });
+}
+
+var narrowCities = function(city){
+    var travelData = [];
+    var distanceData = [];
+    var mustGo = '';
+    for (var i = 0; i < attractions[0].length; i++){
+        travelData.push(attractions[0][i]);
+        travelData[travelData.length].id = travelData.length + 1;
+        travelData[travelData.length].category = category.toString();
+        if (i === 0){
+            mustGo += ('' + travelData.length + 1);
+        } else {
+            mustGo += (',' + travelData.length + 1);
+        }
+    }
+    for (var j = 0; j < attractions[2].length; j++){
+        travelData.push(attractions[2][j]);
+        travelData[travelData.length].id = travelData.length + 1;
+        travelData[travelData.length].category = category.toString();
+    }
+    for (var l = 0; l < travelData.length; l++){
+        for (var m = 0; m < travelData.length; m++){
+            if (travelData[l]._id !== travelData[m]._id){
+                for (var n = 0; n < distanceMatrix.length; n++){
+                    if (distanceMatrix.origin === travelData[l]._id && distanceMatrix.destination === travelData[m]._id){
+                        distanceData.push({origin: travelData[l].id, destination: travelData[m].id, distance = distanceMatrix[n].duration});
+                        n = distanceMatrix.length;
+                    }
+                }
+            }
+        }
+    }
+};
+</script>
+{% endblock %}

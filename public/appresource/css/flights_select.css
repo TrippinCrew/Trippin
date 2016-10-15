@@ -1,30 +1,39 @@
+
+
 .txt-header {
-    height: 19px;
-    font-family: Raleway;
-    font-size: 16px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    text-align: center;
-    color: #4d5153;
+  height: 19px;
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #4d5153;
+}
+
+.txt-header.text-style-1 {
+  color: #297fe4;
 }
 
 .event-background {
-    margin-top:24px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .event-background-row {
     width: 343px;
     height: 222px;
     background-color: #efefef;
+    padding-top: 10px;
+    padding-left: 15px;
+    /*additional*/
+    position: relative;
 }
 
 .event-background-row.second {
     background-color: #e6e6e6;
 }
 
-.eb-row-1{
-    width: 95px;
+.eb-style-1 {
     height: 19px;
     font-family: Raleway;
     font-size: 16px;
@@ -33,10 +42,11 @@
     font-stretch: normal;
     text-align: left;
     color: #4d5153;
+    /*additional*/
+    margin-top: 10px;
 }
 
-.eb-row-2{
-    width: 219px;
+.eb-style-2 {
     height: 24px;
     font-family: Raleway;
     font-size: 20px;
@@ -45,10 +55,11 @@
     font-stretch: normal;
     text-align: left;
     color: #4d5153;
+    /*additional*/
+    margin-top: 16px;
 }
 
-.eb-row-3{
-    width: 250px;
+.eb-style-3 {
     height: 16px;
     font-family: Raleway;
     font-size: 14px;
@@ -57,23 +68,26 @@
     font-stretch: normal;
     text-align: left;
     color: #808080;
-    
+    /*additional*/
+    margin-bottom: 16px;
 }
 
 .plane---FontAwesome {
-  width: 13px;
-  height: 16px;
-  font-family: FontAwesome;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  text-align: left;
-  color: #4d5153;
+    height: 16px;
+    font-family: FontAwesome;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #4d5153;
 }
 
-.eb-row-4{
-    width: 286px;
+.plane---FontAwesome:before {
+    content: "\f072";
+}
+
+.eb-style-4 {
     height: 16px;
     font-family: Raleway;
     font-size: 14px;
@@ -82,21 +96,36 @@
     font-stretch: normal;
     text-align: left;
     color: #4d5153;
-    
+    /*additional*/
 }
 
-.eb-row-1{
-    
+.eb-style-5 {
+    height: 16px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #d04b00;
+    /*additional*/
+    margin-top: 26px;
 }
 
-.eb-row-1{
-    
+.eb-style-6 {
+    width: 77px;
+    height: 29px;
+    font-family: Raleway;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: right;
+    color: #009717;
+    /*additional*/
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
 }
 
-.eb-row-1{
-    
-}
 
-.eb-row-1{
-    
-}

@@ -1,19 +1,27 @@
+
+.Progress-1 {
+  width: 320px;
+  height: 55px;
+  background-image: url("/appresource/images/bc_flights.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 .txt-header {
-    width: 305px;
-    height: 19px;
-    font-family: Raleway;
-    font-size: 16px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    text-align: center;
-    color: #4d5153;
-    /*additiona*/
-    margin-bottom: 24px;
+  height: 19px;
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #4d5153;
 }
 
+.txt-header.text-style-1 {
+  color: #297fe4;
+}
 .event-background {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 .event-background-row {
@@ -32,7 +40,6 @@
 }
 
 .eb-style-1 {
-    width: 71px;
     height: 15.6px;
     font-family: Raleway;
     font-size: 12px;
@@ -45,7 +52,6 @@
 }
 
 .eb-style-2 {
-    width: 176px;
     height: 21.2px;
     font-family: Raleway;
     font-size: 16px;
@@ -63,7 +69,6 @@
 }
 
 .eb-style-3 {
-    width: 138px;
     height: 15.6px;
     font-family: Raleway;
     font-size: 12px;
@@ -75,7 +80,6 @@
 }
 
 .eb-style-4 {
-    width: 51px;
     height: 15.6px;
     font-family: Raleway;
     font-size: 12px;
@@ -89,7 +93,6 @@
 }
 
 .eb-style-5 {
-  width: 64px;
   height: 26.8px;
   font-family: Raleway;
   font-size: 20px;

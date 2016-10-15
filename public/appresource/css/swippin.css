@@ -34,7 +34,6 @@
 }
 
 .location {
-    width: 168px;
     height: 24px;
     font-family: Raleway;
     font-size: 20px;
@@ -51,7 +50,6 @@
 }
 
 .place {
-    width: 80px;
     height: 16px;
     font-family: Raleway;
     font-size: 14px;
@@ -194,4 +192,9 @@
 
 .signout:before {
     content: "\f08b";
+}
+
+
+.emu_css{
+    border: 1px solid;
 }

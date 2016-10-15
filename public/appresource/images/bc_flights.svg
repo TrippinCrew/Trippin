@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="309px" height="40px" viewBox="0 0 309 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
+    <title>9511999A-C775-4DDE-8C81-98EFF19C4517</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Prototype" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Flight" transform="translate(-24.000000, -83.000000)">
+            <g id="Progress-3" transform="translate(16.000000, 73.000000)">
+                <rect id="Line" fill="#A8A8A8" fill-rule="evenodd" x="43" y="20" width="257" height="6"></rect>
+                <rect id="Line" fill="#0E4E99" fill-rule="evenodd" x="43" y="20" width="171" height="6"></rect>
+                <g id="Preferences---Done">
+                    <polygon id="Background" points="0 0 85.75 0 85.75 61 39.6119291 61 0 61"></polygon>
+                    <circle id="Oval" fill="#0E4E99" fill-rule="evenodd" cx="43.5" cy="22.5" r="12.5"></circle>
+                    <text id="Text" font-family="Raleway-Bold, Raleway" font-size="10" font-weight="bold" fill="#0E4E99">
+                        <tspan x="8.035" y="49">PREFERENCES</tspan>
+                    </text>
+                </g>
+                <g id="Itinerary---Done" transform="translate(85.000000, 0.000000)">
+                    <polygon id="Background" points="0 0 85.75 0 85.75 61 39.6119291 61 0 61"></polygon>
+                    <circle id="Oval" fill="#0E4E99" fill-rule="evenodd" cx="43.5" cy="22.5" r="12.5"></circle>
+                    <text id="Text" font-family="Raleway-Bold, Raleway" font-size="10" font-weight="bold" fill="#0E4E99">
+                        <tspan x="16.915" y="49">ITINERARY</tspan>
+                    </text>
+                </g>
+                <g id="Flight---Current" transform="translate(171.000000, 0.000000)">
+                    <polygon id="Background" points="0 0 85.75 0 85.75 61 39.6119291 61 0 61"></polygon>
+                    <circle id="Oval" fill="#297FE4" fill-rule="evenodd" cx="43.5" cy="22.5" r="12.5"></circle>
+                    <text id="Text" font-family="Raleway-Bold, Raleway" font-size="10" font-weight="bold" fill="#297FE4">
+                        <tspan x="25.335" y="49">FLIGHT</tspan>
+                    </text>
+                </g>
+                <g id="Hotel---Default" transform="translate(257.000000, 0.000000)">
+                    <polygon id="Background" points="0 0 85.75 0 85.75 61 39.6119291 61 0 61"></polygon>
+                    <circle id="Oval" fill="#C8C8C8" fill-rule="evenodd" cx="43.5" cy="22.5" r="12.5"></circle>
+                    <text id="Text" font-family="Raleway-Bold, Raleway" font-size="10" font-weight="bold" fill="#C8C8C8">
+                        <tspan x="26.475" y="49">HOTEL</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

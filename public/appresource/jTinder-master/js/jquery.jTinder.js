@@ -33,7 +33,6 @@
         pane_width = 0,
         pane_count = 0,
         current_pane = 0;
-    var counter = 0;
 
     function Plugin(element, options) {
         this.element = element;
@@ -47,6 +46,7 @@
 
 
         init: function(element) {
+
             container = $(">ul", element);
             panes = $(">ul>li", element);
             pane_width = container.width();
@@ -59,6 +59,11 @@
             $(element).bind('touchend mouseup', this.handler);
         },
 
+        bindNew: function(element) {
+            panes = $(">ul>li", element);
+            pane_count = panes.length;
+            current_pane = panes.length - 1;
+        },
 
         showPane: function(index) {
             panes.eq(current_pane).hide();
@@ -67,7 +72,6 @@
 
         next: function() {
             return this.showPane(current_pane - 1);
-
         },
 
         dislike: function() {
@@ -171,16 +175,39 @@
         }
     };
 
+    // $.fn[ pluginName ] = function (options) {
+    //     this.each(function () {
+    //         if (!$.data(this, "plugin_" + pluginName)) {
+    //             $.data(this, "plugin_" + pluginName, new Plugin(this, options));
+    //         }
+    //         else if ($.isFunction(Plugin.prototype[options])) {
+    //             $.data(this, 'plugin_' + pluginName)[options]();
+    //         }
+    //     });
+
+    //     return this;
+    // };
+
+
     $.fn[pluginName] = function(options) {
         this.each(function() {
+            /************ BEFORE
             if (!$.data(this, "plugin_" + pluginName)) {
                 $.data(this, "plugin_" + pluginName, new Plugin(this, options));
-            } else if ($.isFunction(Plugin.prototype[options])) {
-                $.data(this, 'plugin_' + pluginName)[options]();
             }
+            else if ($.isFunction(Plugin.prototype[options])) {
+                $.data(this, 'plugin_' + pluginName)[options]();
+            } *******END OF PREVIOUS CODE****/
+
+            /**** NEW CODE *****/
+            if (!$.data(this, "plugin_" + pluginName)) {
+                $.data(this, "plugin_" + pluginName, new Plugin(this, options));
+            } else {
+                $.data(this, "plugin_" + pluginName).bindNew(this);
+            } /**** END OF NEW CODE *****/
+
         });
 
         return this;
     };
-
 })(jQuery, window, document);

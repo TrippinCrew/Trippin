@@ -7,20 +7,18 @@
         <h1 class="g-trippin">Trippin'<span class="signout"></span></h1>
     </div>
     <!-- start padding container -->
-    <div style="width: 500px; height:500px" id="content-holder">
+    <!--    <div style="display:none" id="content-holder">
         <div id="emu_cards">
-            Cards
+            
         </div>
-
         <button id="emu_dislike">dislike</button>
         <button id="emu_like">like</button>
-    </div>
+    </div> -->
     <div class="wrap custom">
         <!-- start jtinder container -->
-
         <div id="tinderslide" class="tinderslide-custom">
             <ul>
-                <li class="card" id="attr_id_1">
+<!--                 <li class="card" id="attr_id_1">
                     <div><img class="image" src="http://cdn.ek.aero/english/images/Phuket_tcm233-2256631.jpg"></div>
                     <div class="location">Marina Bay Sands</div>
                     <div class="place">
@@ -31,31 +29,7 @@
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
-                </li>
-                <li class="card" id="attr_id_2">
-                    <div><img class="image" src="http://www.yoursingapore.com/see-do-singapore/recreation-leisure/resorts/marina-bay-sands/_jcr_content/par-carousel/carousel_detailpage/carousel/item_1.thumbnail.carousel-img.740.416.jpg"></div>
-                    <div class="location">Marina Bay Sands</div>
-                    <div class="place">
-                        Singapore
-                    </div>
-                    <div class="description">
-                        Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
-                    </div>
-                    <div class="like"></div>
-                    <div class="dislike"></div>
-                </li>
-                <li class="card" id="attr_id_3">
-                    <div><img class="image" src="http://cdn.rsvlts.com/wp-content/uploads/2013/10/Godafoss.jpg"></div>
-                    <div class="location">Marina Bay Sands</div>
-                    <div class="place">
-                        Singapore
-                    </div>
-                    <div class="description">
-                        Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
-                    </div>
-                    <div class="like"></div>
-                    <div class="dislike"></div>
-                </li>
+                </li> -->
             </ul>
         </div>
         <!-- end jtinder container -->
@@ -78,8 +52,8 @@
         <a class="btn blue" href="/preference"><span class="paper-plane---FontAwesome"></span></a>
         <a id="like-btn" class="btn green like" href="javascript:void(0)"><span class="Heart---FontAwesome"></span></a>
     </div>
-    <button onclick="clearCards()">remove cards</button>
-    <button onclick="checkCardsLeft()">cards left</button>
+ <!--    <button onclick="clearCards()">remove cards</button>
+    <button onclick="checkCardsLeft()">cards left</button> -->
 </div>
 {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
 <!-- transform2d lib -->
@@ -90,42 +64,18 @@
 <script type="text/javascript" src="appresource/script/destinationHackFunctions.js"></script>
 <script>
 
-// start emu 
-
-$('#emu_dislike').click(function(){
-
-});
-
-$('#emu_like').click(function(){
-
-});
-
-
-
-
-
-
-
-
-
-// end emu
-
 $("#dislike-btn").click(function() {
+    dislikeSwipped();
     $("#tinderslide").jTinder('dislike');
+    
 });
 
 $("#like-btn").click(function() {
+    likeSwipped();
     $("#tinderslide").jTinder('like');
 
 });
 
-
-function populateCards() {
-    cardHolder = $("#header ul");
-
-}
-
-var counter = 0;
 
 /**
  * jTinder initialization
@@ -133,36 +83,19 @@ var counter = 0;
 $("#tinderslide").jTinder({
     // dislike callback
     onDislike: function(item) {
-        // check cards left
-        if (counter >= checkCardsLeft()) {
-            clearCards();
-            console.log("NO MORE CARDS LEFT; RELOAD");
-            testPopulate();
-        }
-        $('#item[0].id').remove();
-        console.log(item[0].id);
-        counter++;
+        dislikeSwipped();
     },
     // like callback
     onLike: function(item) {
-        // check cards left
-        if (counter >= checkCardsLeft()) {
-            clearCards();
-            console.log("NO MORE CARDS LEFT; RELOAD");
-            testPopulate();
-            $("#tinderslide").jTinder();
-
-        }
-        $('#item[0].id').remove();
-        console.log(item[0].id);
-        counter++;
+        likeSwipped();
     },
     animationRevertSpeed: 200,
-    animationSpeed: 400,
+    animationSpeed: 500,
     threshold: 1,
     likeSelector: '.like',
     dislikeSelector: '.dislike'
 });
+
 
 /**
  * Set button action to trigger jTinder like & dislike.
@@ -175,28 +108,10 @@ $('.actions .like, .actions .dislike').click(function(e) {
 function checkCardsLeft() {
     return $("#tinderslide ul li").length;
 }
+
 function checkCardsLeft() {
     console.log($(".card").length);
 }
 
-function clearCards() {
-    $('.card').remove();
-}
-
-function testPopulate(){
-    $("#header ul").append('<li class="card" id="attr_id_1">'+
-        '<div><img class="image" src="http://cdn.ek.aero/english/images/Phuket_tcm233-2256631.jpg"></div>'+
-        '<div class="location">Marina Bay Sands</div>' +
-        '<div class="place">' +
-            'Singapore' +
-        '</div>' +
-        '<div class="description">' +
-            'Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.' +
-        '</div>'+
-        '<div class="like"></div>' +
-        '<div class="dislike"></div>' +
-    '</li>');
-
-}
 </script>
 {% endblock %}
