@@ -3,7 +3,7 @@ module.exports = function(app, passport) {
     var User = require('./models/users');
     var Place = require('./models/places');
     var UserPreference = require('./models/userpreferences');
-    var DistanceMatrix = require('./models/distanceMatrix');
+    var DistanceMatrix = require('./models/distancematrixs');
     var ObjectId = require('mongoose').Types.ObjectId;
 
     // ****************** GETS START ******************** 
@@ -33,15 +33,32 @@ module.exports = function(app, passport) {
 
     // ****************** POST START ******************** 
 
-    app.get('/api/getAllDistanceMatrix', function(req,res){
-        DistanceMatrix.find({}, function(err,distanceMatrix){
-            if(err){
+    app.get('/api/getAllDistanceMatrix', function(req, res) {
+        // var dburl = 'mongodb://ec2-54-179-187-250.ap-southeast-1.compute.amazonaws.com:27017/trippin';
+        // var MongoClient = require('mongodb').MongoClient;
+
+        // MongoClient.connect(dburl, function(err, db) {
+        //     var returnArray = []
+        //     var cursor = db.collection('distancematrix').find({});
+        //     var wholeList = cursor.toArray();
+        //     res.json(wholeList);
+        //     // cursor.each(function(err, doc, callback) {
+        //     //     if (doc != null) {
+        //     //         //console.dir(doc);
+        //     //         returnArray.push(doc);
+        //     //     } else {
+
+        //     //     }
+        //     // });
+        // });
+
+
+        DistanceMatrix.find({}, function(err, dm) {
+            if (err) {
                 throw err;
             }
-            res.json(distanceMatrix);
-
+            res.json(dm);
         });
-
     });
 
 
@@ -341,7 +358,7 @@ module.exports = function(app, passport) {
         //         'Authorization': {
         //         'expedia-apikey key': '48RGOAbNOn84uIQS94ppK9uEBRtNdzYL'
         //     }
-                
+
         //     }
         // };
 
