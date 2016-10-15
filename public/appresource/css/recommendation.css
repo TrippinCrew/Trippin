@@ -4,7 +4,7 @@
 
 .country {
     width: 343px;
-    height: 100px;
+    height: 150px;
     opacity: 0.65;
     border-radius: 4px;
     background-color: #efefef;
@@ -21,6 +21,7 @@
     font-stretch: normal;
     text-align: center;
     color: #000000;
+    line-height: 2.5;
 }
 
 .vietnam {
@@ -37,7 +38,7 @@
 
 .singapore {
     background: url('http://static.vinepair.com/wp-content/uploads/2016/01/singapore-header.jpg');
-    background-position-x: -746px;
+    background-position-x: 0px;
     background-position-y: 191px;
 }
 

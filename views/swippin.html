@@ -11,7 +11,7 @@
         <!-- start jtinder container -->
         <div id="tinderslide" class="tinderslide-custom">
             <ul>
-                <li class="pane1">
+                <li class="card" id="attr_id_1">
                     <div><img class="image" src="http://cdn.ek.aero/english/images/Phuket_tcm233-2256631.jpg"></div>
                     <div class="location">Marina Bay Sands</div>
                     <div class="place">
@@ -23,7 +23,7 @@
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane2">
+                <li class="card" id="attr_id_2">
                     <div><img class="image" src="http://www.yoursingapore.com/see-do-singapore/recreation-leisure/resorts/marina-bay-sands/_jcr_content/par-carousel/carousel_detailpage/carousel/item_1.thumbnail.carousel-img.740.416.jpg"></div>
                     <div class="location">Marina Bay Sands</div>
                     <div class="place">
@@ -35,7 +35,7 @@
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane3">
+                <li class="card" id="attr_id_3">
                     <div><img class="image" src="http://cdn.rsvlts.com/wp-content/uploads/2013/10/Godafoss.jpg"></div>
                     <div class="location">Marina Bay Sands</div>
                     <div class="place">
@@ -69,6 +69,8 @@
         <a class="btn blue" href="/preference"><span class="paper-plane---FontAwesome"></span></a>
         <a id="like-btn" class="btn green like" href="javascript:void(0)"><span class="Heart---FontAwesome"></span></a>
     </div>
+    <button onclick="clearCards()">remove cards</button>
+    <button onclick="testCardsleft()">cards left</button>
 </div>
 {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
 <!-- transform2d lib -->
@@ -76,7 +78,7 @@
 <!-- jTinder lib -->
 <script type="text/javascript" src="appresource/jTinder-master/js/jquery.jTinder.js"></script>
 <!-- jTinder initialization script -->
-<script type="text/javascript" src="appresource/jTinder-master/js/main.js"></script>
+<!-- <script type="text/javascript" src="appresource/jTinder-master/js/main.js"></script> -->
 <script>
 $("#dislike-btn").click(function() {
     $("#tinderslide").jTinder('dislike');
@@ -86,5 +88,84 @@ $("#like-btn").click(function() {
     $("#tinderslide").jTinder('like');
 
 });
+
+
+function populateCards() {
+    cardHolder = $("#header ul");
+
+}
+
+var counter = 0;
+
+/**
+ * jTinder initialization
+ */
+$("#tinderslide").jTinder({
+    // dislike callback
+    onDislike: function(item) {
+        // check cards left
+        if (counter >= checkCardsLeft()) {
+            clearCards();
+            console.log("NO MORE CARDS LEFT; RELOAD");
+            testPopulate();
+        }
+        console.log(item[0].id);
+        counter++;
+    },
+    // like callback
+    onLike: function(item) {
+        // check cards left
+        if (counter >= checkCardsLeft()) {
+            clearCards();
+            console.log("NO MORE CARDS LEFT; RELOAD");
+            testPopulate();
+            $("#tinderslide").jTinder().init();
+
+        }
+        console.log(item[0].id);
+        counter++;
+    },
+    animationRevertSpeed: 200,
+    animationSpeed: 400,
+    threshold: 1,
+    likeSelector: '.like',
+    dislikeSelector: '.dislike'
+});
+
+/**
+ * Set button action to trigger jTinder like & dislike.
+ */
+$('.actions .like, .actions .dislike').click(function(e) {
+    e.preventDefault();
+    $("#tinderslide").jTinder($(this).attr('class'));
+});
+
+function checkCardsLeft() {
+    return $("#tinderslide ul li").length;
+}
+
+function clearCards() {
+    $('.card').remove();
+}
+
+function testCardsleft() {
+    alert($("#tinderslide ul li").length);
+}
+
+function testPopulate(){
+    $("#header ul").append('<li class="card" id="attr_id_1">'+
+        '<div><img class="image" src="http://cdn.ek.aero/english/images/Phuket_tcm233-2256631.jpg"></div>'+
+        '<div class="location">Marina Bay Sands</div>' +
+        '<div class="place">' +
+            'Singapore' +
+        '</div>' +
+        '<div class="description">' +
+            'Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.' +
+        '</div>'+
+        '<div class="like"></div>' +
+        '<div class="dislike"></div>' +
+    '</li>');
+
+}
 </script>
 {% endblock %}

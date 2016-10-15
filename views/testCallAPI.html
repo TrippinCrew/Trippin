@@ -1,0 +1,24 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/welcome.css"> {% endblock %} {% block content%}
+<div id="testCallAPI">
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+$().ready(function() {
+    // $.ajax({
+    //         method: "GET",
+    //         url: "http://54.179.187.250/api/getAllPlaces",
+    //         async: false
+    //     })
+    //     .done(function(data) {
+    //         console.log(data);
+    //     });
+
+    $.getJSON("http://128.199.235.198:8080/TripEngine/TripEngine?cashFlow=500&travelDays=3&startTime=800&endTime=2000&startAddress=&endAddress=&mustGo=&preferences=",
+        function(data) {
+            alert(data);
+        });
+
+});
+</script>
+{% endblock %}

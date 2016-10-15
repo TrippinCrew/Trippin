@@ -43,8 +43,18 @@ module.exports = function(app, passport) {
         res.render('failed');
     });
 
+    app.get('/testCallAPI', function(req, res) {
+        res.render('testCallAPI');
+    });
+
+    app.get('/flights', function(req, res) {
+        res.render('flights');
+    });
 
 
+    app.get('/flights_select', function(req, res) {
+        res.render('flights_select');
+    });
 
     // ****************** GETS END ******************** 
 

@@ -1,0 +1,105 @@
+.txt-header {
+    width: 305px;
+    height: 19px;
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #4d5153;
+    /*additiona*/
+    margin-bottom: 24px;
+}
+
+.event-background {
+    margin-bottom: 16px;
+}
+
+.event-background-row {
+    width: 343px;
+    height: 115px;
+    background-color: #efefef;
+    /*additional*/
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 11.2px;
+    position: relative;
+}
+
+.event-background-row.second {
+    background-color: #e6e6e6;
+}
+
+.eb-style-1 {
+    width: 71px;
+    height: 15.6px;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #4d5153;
+    /*additional*/
+}
+
+.eb-style-2 {
+    width: 176px;
+    height: 21.2px;
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #4d5153;
+    /*additional*/
+    margin-top: 8.9px;
+}
+
+.eb-style-2 .text-style-1 {
+    font-weight: 600;
+}
+
+.eb-style-3 {
+    width: 138px;
+    height: 15.6px;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #808080;
+}
+
+.eb-style-4 {
+    width: 51px;
+    height: 15.6px;
+    font-family: Raleway;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #d04b00;
+    /*additional*/
+    margin-top: 8.9px;
+}
+
+.eb-style-5 {
+  width: 64px;
+  height: 26.8px;
+  font-family: Raleway;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: right;
+  color: #009717;
+  /*additional*/
+  position: absolute;
+  top: 64px;
+  right: 26.8px;
+}
