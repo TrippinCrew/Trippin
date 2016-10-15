@@ -8,7 +8,7 @@ var placeSchema = mongoose.Schema({
     // id: Number, //Identifier for places <Omitted>
     city: String, // City which the place is in
     name: String, // Name of place
-    category: String, //Cat
+    category: [String], //Cat
     utility: Number,
     price: Number, // price of place
     opening: Number, // opening hour

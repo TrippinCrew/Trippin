@@ -286,6 +286,54 @@ module.exports = function(app, passport) {
         });
     });
 
+    var formData = {
+        cashFlow: 500,
+        travelDays: 3,
+        startTime: 800,
+        endTime: 2000,
+        startAddress: "",
+        endAddress: "",
+        mustGo: "",
+        preferences: ""
+    };
+
+    app.get("/test3", function(req, res) {
+
+        request.post({ url: 'http://128.199.235.198:8080/TripEngine/TripEngine', form: formData }, function(err, httpResponse, body) {
+            if (err) {
+                throw err;
+            }
+            res.json(JSON.parse(body));
+
+            /* ... */
+        });
+    });
+
+
+
+    var SabreDevStudio = require('sabre-dev-studio');
+    var sabre_dev_studio = new SabreDevStudio({
+        client_id: 'V1:rzz59f5ljn7x82lo:DEVCENTER:EXT',
+        client_secret: 'pCIy8r8F',
+        uri: 'https://api.test.sabre.com'
+    });
+    var options = {};
+    var callback = function(error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(JSON.stringify(JSON.parse(data)));
+        }
+    };
+
+    app.get('/test2', function(req, res) {
+        sabre_dev_studio.get('/v1.0.0/shop/hotels?mode=avail', options, function(err, data) {
+            res.json(JSON.parse(data));
+
+        });
+
+
+    });
 
 
 

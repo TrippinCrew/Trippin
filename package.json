@@ -29,6 +29,7 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "request": "^2.75.0",
+    "sabre-dev-studio": "^1.2.0",
     "swig": "^1.4.2"
   }
 }
