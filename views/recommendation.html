@@ -55,7 +55,7 @@ var recommend3 = [
     []
 ];
 
-var distanceData = [];
+var distanceMatrix = [];
 
 function getTop3Cities() {
     $.ajax({
@@ -183,14 +183,20 @@ function getDistanceMatrix() {
             async: false
         })
         .done(function(res) {
-            distanceData = res;
+            distanceMatrix = res;
         });
 }
+
 
 var narrowCities = function(city, cityArray) {
     var attractions = cityArray;
     var travelData = [];
-    var mustGo = '';
+    var distanceData = [];
+    var mustGo = "";
+    var cashFlow = 500;
+    var travelDays = 3;
+    var startTime = 800;
+    var endTime = 2300;
     for (var i = 0; i < attractions[0].length; i++) {
         // console.log(attractions[0][i]);
         travelData.push(attractions[0][i]);
@@ -198,11 +204,7 @@ var narrowCities = function(city, cityArray) {
         travelData[travelData.length-1].id = travelData.length;
         var category = travelData[travelData.length-1].category;
         travelData[travelData.length-1].category = category.toString();
-        if (i === 0) {
-            mustGo += ('' + travelData.length + 1);
-        } else {
-            mustGo += (',' + travelData.length + 1);
-        }
+        travelData[travelData.length-1].utility = travelData[travelData.length-1].utility * 10;
     }
     for (var j = 0; j < attractions[2].length; j++) {
         travelData.push(attractions[2][j]);
@@ -213,8 +215,8 @@ var narrowCities = function(city, cityArray) {
     for (var l = 0; l < travelData.length; l++) {
         for (var m = 0; m < travelData.length; m++) {
             if (travelData[l]._id !== travelData[m]._id) {
-                for (var n = 0; n < distanceData.length; n++) {
-                    if (distanceData.origin === travelData[l]._id && distanceData.destination === travelData[m]._id) {
+                for (var n = 0; n < distanceMatrix.length; n++) {
+                    if (distanceMatrix[n].origin === travelData[l]._id && distanceMatrix[n].destination === travelData[m]._id) {
                         distanceData.push({
                             origin: travelData[l].id,
                             destination: travelData[m].id,
@@ -231,12 +233,28 @@ var narrowCities = function(city, cityArray) {
             }
         }
     }
-    var travelDataStr = JSON.stringify(travelData);
-    var distanceDataStr = JSON.stringify(distanceData);
-    console.log(travelDataStr);
+    
 
     // window.location.href = "/getSchedule?userid="+getUserId()+"&city="+city+"&mustGo="+mustGo+"&travelData="+travelDataStr+"&distanceData="+distanceDataStr;
 
+    var travelDataStr = JSON.stringify(travelData);
+    var distanceDataStr = JSON.stringify(distanceData);
+
+    $.ajax({
+            method: "POST",
+            url: "/api/getSchedule",
+            data: {
+                userid: getUserId(),
+                mustGo: mustGo,
+                travelData: travelDataStr,
+                distanceData: distanceDataStr
+            }
+        })
+        .done(function(res) {
+            window.location.href="/itinerary";
+
+        });
 };
+
 </script>
 {% endblock %}

@@ -73,6 +73,10 @@ module.exports = function(app, passport) {
         res.render('complete');
     });
 
+    app.get("/itinerary",function(req,res){
+        res.render('itinerary', {'itinerary': req.flash('itinerary')});
+    });
+
     // ****************** GETS END ******************** 
 
     // ****************** POST START ******************** 
@@ -85,9 +89,9 @@ module.exports = function(app, passport) {
         var mustGo = req.body.mustGo;
         var travelData = req.body.travelData;
         var distanceData = req.body.distanceData;
-        console.log(JSON.parse(travelData));
+        console.log(mustGo);
         var formData = {
-            cashFlow: 500,
+            cashFlow: 999999,
             travelDays: 3,
             startTime: 800,
             endTime: 2300,
@@ -101,12 +105,13 @@ module.exports = function(app, passport) {
 
          request.post({ url: 'http://128.199.235.198:8080/TripEngine/TripEngine', form: formData }, function(err, httpResponse, body) {
             if (err) {
+                console.log("err");
                 throw err;
             }
             // res.json(JSON.parse(body));
-            console.log(body);
-            console.log("body");
-            res.render('success');
+            console.log(JSON.parse(body));
+            req.flash("itinerary", JSON.parse(body));
+            res.json(JSON.parse(body));
             /* ... */
         });
 
