@@ -35,6 +35,45 @@ module.exports = function(app, passport) {
 
     // ****************** POST START ******************** 
 
+
+    app.get('/api/getAllPlaces', function(req,res){
+        Place.find({}, function(err, places) {
+            if(err){
+                throw err;
+            }
+
+            res.json(places);
+        });
+
+    });
+
+    app.get('/api/getAllUsers', function(req,res){
+        User.find({},function(err, doc){
+            if(err){
+                throw err;
+            }
+
+            res.json(doc);
+
+        });
+
+        
+
+    });
+
+
+    app.get('/api/getAllUserPreferences',function(req,res){
+        UserPreference.find({},function(err, doc){
+            if(err){
+                throw err;
+            }
+
+            res.json(doc);
+
+        });
+
+    });
+
     //API that gets all places that user has not shown preference
     app.get('/api/getPlacesBundle', function(req, res) {
         //get all Json of places db that does not appear in user preference for userid
@@ -130,7 +169,6 @@ module.exports = function(app, passport) {
             if (err) {
                 throw err;
             }
-            console.log(doc);
             doc.sort(function(a,b){return b.count-a.count});
             var returnDoc = doc.slice(0,3);
             res.json(returnDoc); //[{"_id":"SG","count":2},{"_id":"MY","count":2},{"_id":"TK","count":1}]
