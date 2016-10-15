@@ -1,0 +1,44 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+
+<link rel="stylesheet" href="appresource/css/hotel.css"> {% endblock %} {% block content%}
+
+<div class="m-container">
+	<!-- ADD CONTENT HERE -->
+
+	<!-- Header -->
+	<div class="g-background-title m-center">
+		<a href="javascript:history.back()"><span class="g-back"></span></a>
+		<h1 class="g-trippin">Trippin'</h1>
+		<a href="/profile"><span class="g-profile"></span></a>
+	</div>
+	<!-- Page Content -->
+	<div class="g-page-content">
+		<div class="progress-trail">
+        </div>
+		<div class="hotel-header hotel-title">
+			Select your preferred <span class="text-highlight">hotel</span>
+		</div>
+		<div class="hotel-card">
+			<div class="hotel-image mockup"></div>
+			<div class="content">
+				<div class="content-card">
+					<div class="row">
+						<div class="col-xs-12 hotel-name">
+							Hotel name
+						</div>
+						<div class="col-xs-12 hotel-description">
+							Hotel description
+						</div>
+						<div class="col-xs-12 hotel-price">
+							$ 0000
+						</div>
+					</div>
+				</div>
+				<div class="btn-card">
+					<a href="#" class="btn btn-block btn-primary btn-book">BOOK</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}

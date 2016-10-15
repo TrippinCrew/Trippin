@@ -61,6 +61,18 @@ module.exports = function(app, passport) {
         res.render('flights_select');
     });
 
+    app.get('/profile', function(req,res){
+        res.render('profile');
+    });
+
+    app.get('/hotel', function(req, res){
+        res.render('hotel');
+    });
+
+    app.get('/complete', function(req, res){
+        res.render('complete');
+    });
+
     // ****************** GETS END ******************** 
 
     // ****************** POST START ******************** 

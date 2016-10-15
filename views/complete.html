@@ -1,0 +1,40 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+
+<link rel="stylesheet" href="appresource/css/complete.css"> {% endblock %} {% block content%}
+
+<div class="m-container">
+	<!-- ADD CONTENT HERE -->
+
+	<!-- Header -->
+	<div class="g-background-title m-center">
+		<a href="javascript:history.back()"><span class="g-back"></span></a>
+		<h1 class="g-trippin">Trippin'</h1>
+        <a href="/profile"><span class="g-profile"></span></a>
+	</div>
+	<!-- Page Content -->
+	<div class="g-page-content">
+		<div class="complete-card">
+			<div class="badge-card">
+				<div class="trippin-badge"></div>
+			</div>
+			<div class="message-card">
+				Awesome, you've just created a
+				<div class="message-trippin">
+					Trippin' Adventure
+				</div>
+			</div>
+			<div class="btn-card">
+				<div class="row">
+					<div class="col-xs-6">
+                        <a href="#" class="btn btn-block btn-primary btn-blue">VIEW TRIP</a>
+					</div>
+					<div class="col-xs-6">
+                        <a href="#" class="btn btn-block btn-primary btn-green">I'M DONE</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}

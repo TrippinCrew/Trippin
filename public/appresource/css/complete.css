@@ -1,0 +1,61 @@
+.trippin-badge {
+    width: 180px;
+    height: 180px;
+    background: url(../images/badge.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.complete-card {
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+}
+
+.message-card {
+	font-family: Raleway;
+	font-size: 20px;
+	font-weight: 600;
+	text-align: center;
+	color: #4d5153;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.message-trippin {
+	font-family: Raleway;
+	font-size: 24px;
+	font-weight: 600;
+	text-align: center;
+	color: #297fe4;
+}
+
+.button-card {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.btn-blue {
+	background-color: #025aa5;
+    border: solid 1px #025aa5;
+    padding-top:8px;
+    padding-bottom:8px;
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.btn-green {
+    background-color: #5cb85c;
+	border: solid 1px #5cb85c;
+    padding-top:8px;
+    padding-bottom:8px;
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 16px
+}
