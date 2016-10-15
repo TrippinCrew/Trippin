@@ -61,21 +61,57 @@ module.exports = function(app, passport) {
         res.render('flights_select');
     });
 
-    app.get('/profile', function(req,res){
+    app.get('/profile', function(req, res) {
         res.render('profile');
     });
 
-    app.get('/hotel', function(req, res){
+    app.get('/hotel', function(req, res) {
         res.render('hotel');
     });
 
-    app.get('/complete', function(req, res){
+    app.get('/complete', function(req, res) {
         res.render('complete');
     });
 
     // ****************** GETS END ******************** 
 
     // ****************** POST START ******************** 
+    var request = require('request');
+
+
+
+    app.post('/api/getSchedule', function(req, res) {
+        var userid = req.body.userid;
+        var mustGo = req.body.mustGo;
+        var travelData = req.body.travelData;
+        var distanceData = req.body.distanceData;
+        console.log(JSON.parse(travelData));
+        var formData = {
+            cashFlow: 500,
+            travelDays: 3,
+            startTime: 800,
+            endTime: 2300,
+            startAddress: -1,
+            endAddress: -1,
+            mustGo: -1,
+            travelData: travelData,
+            distanceData: distanceData,
+            preferences: -1
+        };
+
+         request.post({ url: 'http://128.199.235.198:8080/TripEngine/TripEngine', form: formData }, function(err, httpResponse, body) {
+            if (err) {
+                throw err;
+            }
+            // res.json(JSON.parse(body));
+            console.log(body);
+            console.log("body");
+            res.render('success');
+            /* ... */
+        });
+
+
+    });
 
     app.get('/api/getAllDistanceMatrix', function(req, res) {
         DistanceMatrix.find({}, function(err, dm) {

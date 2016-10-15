@@ -31,6 +31,7 @@
 <script>
 $().ready(function() {
     getUsersPref();
+    getDistanceMatrix();
     getTop3Cities();
     yishyAPI(top3cities);
     populateTop3();
@@ -75,7 +76,7 @@ function yishyAPI(top3cities) {
 
     var recomCity1 = top3cities[0]._id;
     var recomCity2 = top3cities[1]._id;
-    var recomCity3 = top3cities[2]._id;
+    // var recomCity3 = top3cities[2]._id;
 
 
 
@@ -84,10 +85,11 @@ function yishyAPI(top3cities) {
             recommend1[0].push(like[i]);
         } else if (like[i].city == recomCity2) {
             recommend2[0].push(like[i]);
-        } else if (like[i].city == recomCity3) {
-            recommend3[0].push(like[i]);
-
         }
+        // } else if (like[i].city == recomCity3) {
+        //     recommend3[0].push(like[i]);
+
+        // }
 
     }
 
@@ -96,10 +98,11 @@ function yishyAPI(top3cities) {
             recommend1[1].push(dislike[i]);
         } else if (dislike[i].city == recomCity2) {
             recommend2[1].push(dislike[i]);
-        } else if (dislike[i].city == recomCity3) {
-            recommend3[1].push(dislike[i]);
+        } 
+        // else if (dislike[i].city == recomCity3) {
+        //     recommend3[1].push(dislike[i]);
 
-        }
+        // }
 
     }
 
@@ -108,18 +111,20 @@ function yishyAPI(top3cities) {
             recommend1[2].push(remain[i]);
         } else if (remain[i].city == recomCity2) {
             recommend2[2].push(remain[i]);
-        } else if (remain[i].city == recomCity3) {
-            recommend3[2].push(remain[i]);
+        } 
 
-        }
+        // else if (remain[i].city == recomCity3) {
+        //     recommend3[2].push(remain[i]);
+
+        // }
 
     }
 
-    
+
     console.log(recommend1);
     console.log(recommend2);
-    console.log(recommend3);
-    
+    // console.log(recommend3);
+
 
 
     // for (var i = 0; i < top3cities.length; i++) {
@@ -148,24 +153,30 @@ function getUsersPref() {
 function populateTop3() {
     $('#recommend1-btn').html(top3cities[0]._id);
     $('#recommend2-btn').html(top3cities[1]._id);
-    $('#recommend3-btn').html(top3cities[2]._id);
+    // $('#recommend3-btn').html(top3cities[2]._id);
 
 }
 
 $('#recommend1-btn').click(function() {
-recommend1
+    var recomCity1 = top3cities[0]._id;
+    narrowCities(recomCity1, recommend1);
 });
 
 $('#recommend2-btn').click(function() {
-recommend2
+    var recomCity2 = top3cities[1]._id;
+    narrowCities(recomCity2, recommend2);
+
 });
 
-$('#recommend3-btn').click(function() {
-recommend3
-});
+// $('#recommend3-btn').click(function() {
+//     var recomCity3 = top3cities[2]._id;
+//     narrowCities(recomCity3, recommend3);
 
 
-function getDistanceMatrix(){
+// });
+
+
+function getDistanceMatrix() {
     $.ajax({
             method: "GET",
             url: "/api/getAllDistanceMatrix",
@@ -176,37 +187,56 @@ function getDistanceMatrix(){
         });
 }
 
-var narrowCities = function(city){
+var narrowCities = function(city, cityArray) {
+    var attractions = cityArray;
     var travelData = [];
-    var distanceData = [];
     var mustGo = '';
-    for (var i = 0; i < attractions[0].length; i++){
+    for (var i = 0; i < attractions[0].length; i++) {
+        // console.log(attractions[0][i]);
         travelData.push(attractions[0][i]);
-        travelData[travelData.length].id = travelData.length + 1;
-        travelData[travelData.length].category = category.toString();
-        if (i === 0){
+        // console.log(travelData[length-1]);
+        travelData[travelData.length-1].id = travelData.length;
+        var category = travelData[travelData.length-1].category;
+        travelData[travelData.length-1].category = category.toString();
+        if (i === 0) {
             mustGo += ('' + travelData.length + 1);
         } else {
             mustGo += (',' + travelData.length + 1);
         }
     }
-    for (var j = 0; j < attractions[2].length; j++){
+    for (var j = 0; j < attractions[2].length; j++) {
         travelData.push(attractions[2][j]);
-        travelData[travelData.length].id = travelData.length + 1;
-        travelData[travelData.length].category = category.toString();
+        travelData[travelData.length-1].id = travelData.length;
+        var category = travelData[travelData.length-1].category;
+        travelData[travelData.length-1].category = category.toString();
     }
-    for (var l = 0; l < travelData.length; l++){
-        for (var m = 0; m < travelData.length; m++){
-            if (travelData[l]._id !== travelData[m]._id){
-                for (var n = 0; n < distanceMatrix.length; n++){
-                    if (distanceMatrix.origin === travelData[l]._id && distanceMatrix.destination === travelData[m]._id){
-                        distanceData.push({origin: travelData[l].id, destination: travelData[m].id, distance = distanceMatrix[n].duration});
+    for (var l = 0; l < travelData.length; l++) {
+        for (var m = 0; m < travelData.length; m++) {
+            if (travelData[l]._id !== travelData[m]._id) {
+                for (var n = 0; n < distanceData.length; n++) {
+                    if (distanceData.origin === travelData[l]._id && distanceData.destination === travelData[m]._id) {
+                        distanceData.push({
+                            origin: travelData[l].id,
+                            destination: travelData[m].id,
+                            distance: distanceMatrix[n].duration
+                        });
+                        distanceData.push({
+                            origin: travelData[m].id,
+                            destination: travelData[l].id,
+                            distance: distanceMatrix[n].duration
+                        });
                         n = distanceMatrix.length;
                     }
                 }
             }
         }
     }
+    var travelDataStr = JSON.stringify(travelData);
+    var distanceDataStr = JSON.stringify(distanceData);
+    console.log(travelDataStr);
+
+    // window.location.href = "/getSchedule?userid="+getUserId()+"&city="+city+"&mustGo="+mustGo+"&travelData="+travelDataStr+"&distanceData="+distanceDataStr;
+
 };
 </script>
 {% endblock %}
