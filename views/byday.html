@@ -1,0 +1,51 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/byday.css"> {% endblock %} {% block content%}
+<div class="m-container">
+    <!-- ADD CONTENT HERE -->
+    <!-- Header -->
+    <div class="g-background-title m-center">
+        <a href="javascript:void(0);"><span class="g-back"></span></a>
+        <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+    </div>
+    <!-- Page Content -->
+    <div class="g-page-content">
+        <div class="Progress-1 flight"></div>
+        <div>
+            <font class="txt-header">This is your</font>
+            <font class="txt-header text-style-1"> Trippin’ itinerary</font>
+            <font class="txt-header">for</font>
+            <font class="txt-header text-style-1"> Day 1</font>
+
+        </div>
+        <div class="map-Holder">
+        </div>
+        <div class="highlights-background-holder">
+            <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}

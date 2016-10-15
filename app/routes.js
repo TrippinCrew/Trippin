@@ -73,6 +73,21 @@ module.exports = function(app, passport) {
         res.render('complete');
     });
 
+    app.get('/highlights', function(req, res) {
+        res.render('highlights');
+    });
+
+    app.get('/fullItinerary',function(req,res){
+
+        res.render('fullItinerary');
+    });
+
+    app.get('/byday',function(req,res){
+
+        res.render('byday');
+    })
+
+
     // ****************** GETS END ******************** 
 
     // ****************** POST START ******************** 

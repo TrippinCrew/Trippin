@@ -1,0 +1,63 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/highlights.css"> {% endblock %} {% block content%}
+<div class="m-container">
+    <!-- ADD CONTENT HERE -->
+    <!-- Header -->
+    <div class="g-background-title m-center">
+        <a href="javascript:void(0);"><span class="g-back"></span></a>
+        <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+    </div>
+    <!-- Page Content -->
+    <div class="g-page-content">
+        <div class="Progress-1 flight"></div>
+        <div class="t-center">
+            <font class="txt-header">We've generated a</font>
+            <font class="txt-header text-style-1"> Trippin’ itinerary</font>
+            <font class="txt-header">for</font>
+        </div>
+        <div class="t-center">
+            <font class="txt-header text-style-1">Singapore </font>
+            <font class="txt-header">  with the following </font>
+            <font class="txt-header text-style-1">highlights!</font>
+        </div>
+        <div class="highlights-background-holder">
+            <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="" class="full-inti">
+            <div class="blue-btn">
+                FULL ITINERARY
+            </div>
+        </a>
+        <a href="" class="g-submit-btn">
+            <div class="g-submit">
+                THAT’S AWESOME
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}

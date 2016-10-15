@@ -1,0 +1,54 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/fullItinerary.css"> {% endblock %} {% block content%}
+<div class="m-container">
+    <!-- ADD CONTENT HERE -->
+    <!-- Header -->
+    <div class="g-background-title m-center">
+        <a href="javascript:void(0);"><span class="g-back"></span></a>
+        <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+    </div>
+    <!-- Page Content -->
+    <div class="g-page-content">
+        <div class="Progress-1 flight"></div>
+        <div>
+            <font class="txt-header">Itinerary</font>
+        </div>
+        <div class="highlights-background-holder">
+            <div class="highlights-background-row">
+                <div class="row-1">
+                    Day 1
+                </div>
+                <div class="row-2">
+                    10/10/2016 - 3 Locations    
+                </div>
+                <div class="row-3">
+                    <span class="tag">asdasd, asdasd, dsad321, a3eadw</span>
+                </div>
+            </div>
+
+            <div class="highlights-background-row">
+                <div class="row-1">
+                    Day 2
+                </div>
+                <div class="row-2">
+                    10/10/2016 - 3 Locations    
+                </div>
+                <div class="row-3">
+                    <span class="tag">asdasd, asdasd, dsad321, a3eadw</span>
+                </div>
+            </div>
+        </div>
+
+    <!--     <a href="" class="blue-btn">
+            <div class="full-inti">
+                FULL ITINERARY
+            </div>
+        </a> -->
+        <a href="" class="g-submit-btn">
+            <div class="g-submit marginTop16">
+                ACCEPT
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
