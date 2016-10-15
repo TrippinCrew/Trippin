@@ -1,11 +1,9 @@
 module.exports = function(app, passport) {
-
-
-
     //DB Stuff
     var User = require('./models/users');
     var Place = require('./models/places');
     var UserPreference = require('./models/userpreferences');
+    var DistanceMatrix = require('./models/distanceMatrix');
     var ObjectId = require('mongoose').Types.ObjectId;
 
     // ****************** GETS START ******************** 
@@ -34,6 +32,17 @@ module.exports = function(app, passport) {
     // ****************** GETS END ******************** 
 
     // ****************** POST START ******************** 
+
+    app.get('/api/getAllDistanceMatrix', function(req,res){
+        DistanceMatrix.find({}, function(err,distanceMatrix){
+            if(err){
+                throw err;
+            }
+            res.json(distanceMatrix);
+
+        });
+
+    });
 
 
     app.get('/api/getAllPlaces', function(req, res) {
@@ -309,29 +318,49 @@ module.exports = function(app, passport) {
         });
     });
 
+    // var SabreDevStudio = require('sabre-dev-studio');
+    // var sabre_dev_studio = new SabreDevStudio({
+    //     client_id: 'V1:rzz59f5ljn7x82lo:DEVCENTER:EXT',
+    //     client_secret: 'pCIy8r8F',
+    //     uri: 'https://api.test.sabre.com'
+    // });
 
-
-    var SabreDevStudio = require('sabre-dev-studio');
-    var sabre_dev_studio = new SabreDevStudio({
-        client_id: 'V1:rzz59f5ljn7x82lo:DEVCENTER:EXT',
-        client_secret: 'pCIy8r8F',
-        uri: 'https://api.test.sabre.com'
-    });
-    var options = {};
-    var callback = function(error, data) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log(JSON.stringify(JSON.parse(data)));
-        }
-    };
+    // var callback = function(error, data) {
+    //     if (error) {
+    //         console.log(error);
+    //     } else {
+    //         console.log(JSON.stringify(JSON.parse(data)));
+    //     }
+    // };
 
     app.get('/test2', function(req, res) {
-        sabre_dev_studio.get('/v1.0.0/shop/hotels?mode=avail', options, function(err, data) {
-            res.json(JSON.parse(data));
+
+        // var options = {
+        //     url: 'https://api.github.com/repos/request/request',
+        //     headers: {
+        //         'Authorization': {
+        //         'expedia-apikey key': '48RGOAbNOn84uIQS94ppK9uEBRtNdzYL'
+        //     }
+                
+        //     }
+        // };
+
+        // request.get('http://some.server.com/', {
+        //     'Authorization': {
+        //         'expedia-apikey key': '48RGOAbNOn84uIQS94ppK9uEBRtNdzYL'
+        //     }
+        // }, function(err, doc) {
+
+
+        // });
+
+        request('http://terminal2.expedia.com/x/mhotels/search?city=SEATTLE&checkInDate=2016-12-01&checkOutDate=2016-12-03&room1=2&apikey=48RGOAbNOn84uIQS94ppK9uEBRtNdzYL', function(err, body) {
+            if (err) {
+                throw err;
+            }
+            res.json(body);
 
         });
-
 
     });
 
