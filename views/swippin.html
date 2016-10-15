@@ -7,8 +7,17 @@
         <h1 class="g-trippin">Trippin'<span class="signout"></span></h1>
     </div>
     <!-- start padding container -->
+    <div style="width: 500px; height:500px" id="content-holder">
+        <div id="emu_cards">
+            Cards
+        </div>
+
+        <button id="emu_dislike">dislike</button>
+        <button id="emu_like">like</button>
+    </div>
     <div class="wrap custom">
         <!-- start jtinder container -->
+
         <div id="tinderslide" class="tinderslide-custom">
             <ul>
                 <li class="card" id="attr_id_1">
@@ -70,7 +79,7 @@
         <a id="like-btn" class="btn green like" href="javascript:void(0)"><span class="Heart---FontAwesome"></span></a>
     </div>
     <button onclick="clearCards()">remove cards</button>
-    <button onclick="testCardsleft()">cards left</button>
+    <button onclick="checkCardsLeft()">cards left</button>
 </div>
 {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
 <!-- transform2d lib -->
@@ -78,8 +87,29 @@
 <!-- jTinder lib -->
 <script type="text/javascript" src="appresource/jTinder-master/js/jquery.jTinder.js"></script>
 <!-- jTinder initialization script -->
-<!-- <script type="text/javascript" src="appresource/jTinder-master/js/main.js"></script> -->
+<script type="text/javascript" src="appresource/script/destinationHackFunctions.js"></script>
 <script>
+
+// start emu 
+
+$('#emu_dislike').click(function(){
+
+});
+
+$('#emu_like').click(function(){
+
+});
+
+
+
+
+
+
+
+
+
+// end emu
+
 $("#dislike-btn").click(function() {
     $("#tinderslide").jTinder('dislike');
 });
@@ -109,6 +139,7 @@ $("#tinderslide").jTinder({
             console.log("NO MORE CARDS LEFT; RELOAD");
             testPopulate();
         }
+        $('#item[0].id').remove();
         console.log(item[0].id);
         counter++;
     },
@@ -119,9 +150,10 @@ $("#tinderslide").jTinder({
             clearCards();
             console.log("NO MORE CARDS LEFT; RELOAD");
             testPopulate();
-            $("#tinderslide").jTinder().init();
+            $("#tinderslide").jTinder();
 
         }
+        $('#item[0].id').remove();
         console.log(item[0].id);
         counter++;
     },
@@ -143,13 +175,12 @@ $('.actions .like, .actions .dislike').click(function(e) {
 function checkCardsLeft() {
     return $("#tinderslide ul li").length;
 }
+function checkCardsLeft() {
+    console.log($(".card").length);
+}
 
 function clearCards() {
     $('.card').remove();
-}
-
-function testCardsleft() {
-    alert($("#tinderslide ul li").length);
 }
 
 function testPopulate(){
