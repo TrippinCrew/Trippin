@@ -36,6 +36,7 @@
     position: absolute;
     margin-left: 80px;
     top: 16px;
+    cursor: pointer;
 }
 
 .g-profile:before{
@@ -58,7 +59,7 @@
 }
 
 .g-signout:before {
-    content: "\f08b";
+    content: "\f007";
 }
 
 .g-back {
@@ -162,6 +163,14 @@
 
 .Progress-1.pref {
     background-image: url("/appresource/images/bc_pref.png");
+}
+
+.Progress-1.iti {
+    background-image: url("/appresource/images/bd_itinerary.png");
+}
+
+.Progress-1.hotel {
+    background-image: url("/appresource/images/bc_hotel.png");
 }
 
 

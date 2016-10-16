@@ -1,17 +1,60 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block head %} {% parent %} {% endblock %} {% block content%}
+<h1 id="test"></h1> {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+var userPref = [];
 
-{% block head %} 
-{% parent %} 
-{% endblock %} 
+function getHighlights() {
+    var itinerary = JSON.parse(localStorage.getItem('json'));
+    var likes = userPref[0];
+    var counter = 0;
+    var threeHighlights = [];
 
-{% block content%}
-<h1>{{itinerary}}</h1>
-{% endblock %} 
+    for (var i = 0; i < itinerary.length; i++) {
 
-{% block footer %} 
-{% parent %} 
-{% endblock %} 
+        var day = itinerary[i];
+        for (var j = 0; j < day.length; j++) {
+            var place = day[j];
+            for (var k = 0; k < likes.length; k++) {
+                console.log("IN");
+                if (place._id == likes[k]._id) {
+                    threeHighlights.push(place);
+                    counter++;
 
-{% block scripts %} 
-{% parent %}
+                    if (threeHighlights.length >= 3) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+ 
+}
+$().ready(function() {
+
+    getUsersPref();
+
+        // $.ajax({
+        //     method: "get",
+        //     url: "/api/getFlash",
+        // })
+        // .done(function(res) {
+        // 	console.log(res);
+        //     $("#test").html(res)
+
+        // });
+});
+
+function getUsersPref() {
+    $.ajax({
+            method: "GET",
+            url: "/api/getAllUserArrays?userid=" + getUserId(),
+            async: false
+        })
+        .done(function(res) {
+            userPref = res;
+            // console.log(userPref);
+            getHighlights();
+        });
+}
+</script>
 {% endblock %}

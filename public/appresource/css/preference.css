@@ -32,8 +32,24 @@
 }
 
 .calendar:before {
-    content: "\f073";
+    content: "\f155";
 }
+
+.num {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #dddddd;
+    font-family: FontAwesome;
+}
+
+.num:before {
+    content: "\f00a";
+}
+
 
 .period-holder {
     margin-top: 16px;
@@ -53,7 +69,7 @@
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    text-align: left;
+    text-align: center;
     color: #c8c8c8;
 }
 

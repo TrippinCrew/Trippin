@@ -1,0 +1,136 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/highlights.css"> {% endblock %} {% block content%}
+<div class="m-container">
+    <!-- ADD CONTENT HERE -->
+    <!-- Header -->
+    <div class="g-background-title m-center">
+        <a href="/recommendation"><span class="g-back"></span></a>
+        <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+    </div>
+    <!-- Page Content -->
+    <div class="g-page-content">
+        <div class="Progress-1 iti"></div>
+        <div class="t-center">
+            <font class="txt-header">We've generated a</font>
+            <font class="txt-header text-style-1"> Trippin’ itinerary</font>
+            <font class="txt-header">for</font>
+        </div>
+        <div class="t-center">
+            <font class="txt-header text-style-1">Singapore </font>
+            <font class="txt-header"> with the following </font>
+            <font class="txt-header text-style-1">highlights!</font>
+        </div>
+        <div id="highlight-holder" class="highlights-background-holder">
+            <!-- <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <a href="/fullItinerary" class="full-inti">
+            <div class="blue-btn">
+                FULL ITINERARY
+            </div>
+        </a>
+        <a href="flights" class="g-submit-btn">
+            <div class="g-submit">
+                THAT’S AWESOME
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+var userPref = [];
+var threeHighlights = [];
+
+function getHighlights() {
+    var itinerary = JSON.parse(localStorage.getItem('json'));
+    var likes = userPref[0];
+    var counter = 0;
+    
+
+    for (var i = 0; i < itinerary.length; i++) {
+
+        var day = itinerary[i];
+        for (var j = 0; j < day.length; j++) {
+            var place = day[j];
+            for (var k = 0; k < likes.length; k++) {
+                if (place._id == likes[k]._id) {
+                    threeHighlights.push(place);
+                    counter++;
+
+                    if (threeHighlights.length >= 3) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    // console.log("THIS IS THE HIGVHTS");
+    console.log(threeHighlights);
+    // console.log("THIS IS THE HIGVHTS");
+    populateData();
+}
+$().ready(function() {
+    getUsersPref();
+});
+
+function populateData() {
+    for (var i = 0; i < threeHighlights.length; i++) {
+        $('#highlight-holder').append('<div class="highlights-background-row">' +
+            '<div id="img_' + threeHighlights[i]._id +'"  class="left-hightlights">' +
+            '</div>' +
+            '<div class="right-hightlights">' +
+            '<div class="right-hightlights-row">' +
+            threeHighlights[i].name +
+            '</div>' +
+            '<div>' +
+            '<span class="tags">' + threeHighlights[i].category +'</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>');
+   
+        $('#img_'+threeHighlights[i]._id).append('<img style="width:100px; height:100px" src="'+ threeHighlights[i].picture  + '"/>');
+
+        if(i >= 2){
+            break;
+        }
+    }
+}
+
+
+function getUsersPref() {
+    $.ajax({
+            method: "GET",
+            url: "/api/getAllUserArrays?userid=" + getUserId(),
+            async: false
+        })
+        .done(function(res) {
+            userPref = res;
+            // console.log(userPref);
+            getHighlights();
+        });
+}
+</script>
+{% endblock %}

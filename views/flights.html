@@ -4,124 +4,90 @@
     <!-- ADD CONTENT HERE -->
     <!-- Header -->
     <div class="g-background-title m-center">
-        <a href="javascript:void(0);"><span class="g-back"></span></a>
+        <a href="/fullItinerary"><span class="g-back"></span></a>
         <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
     </div>
     <!-- Page Content -->
     <div class="g-page-content">
         <div class="Progress-1 flight"></div>
         <div class="t-center">
-            <font class="txt-header">Select your departure and return </font>
-            <font class="txt-header text-style-1">flights</font>
+            <font class="txt-header">Cheapest Flight To Country</font>
         </div>
-        <div class="event-background">
-            <div class="event-background-row">
-                <div class="eb-style-1">
-                    Departure
-                </div>
-                <div class="eb-style-2">
-                    SIN 09:00 to MEL 19:00
-                </div>
-                <div class="eb-style-3">
-                    Singapore to Melbourne
-                </div>
-                <div class="eb-style-4">
-                    Emirates
-                </div>
-                <div class="eb-style-5">
-                    $1000
-                </div>
-            </div>
-            <div class="event-background-row second">
-                <div class="eb-style-1">
-                    Return
-                </div>
-                <div class="eb-style-2">
-                    SIN 11:00 to MEL 17:00
-                </div>
-                <div class="eb-style-3">
-                    Melbourne to Singapore
-                </div>
-                <div class="eb-style-4">
-                    Emirates
-                </div>
-                <div class="eb-style-5">
-                    $1000
-                </div>
-            </div>
-        </div>
-        <div class="event-background">
-            <div class="event-background-row">
-                <div class="eb-style-1">
-                    Departure
-                </div>
-                <div class="eb-style-2">
-                    SIN 09:00 to MEL 19:00
-                </div>
-                <div class="eb-style-3">
-                    Singapore to Melbourne
-                </div>
-                <div class="eb-style-4">
-                    Emirates
-                </div>
-                <div class="eb-style-5">
-                    $1000
-                </div>
-            </div>
-            <div class="event-background-row second">
-                <div class="eb-style-1">
-                    Return
-                </div>
-                <div class="eb-style-2">
-                    SIN 11:00 to MEL 17:00
-                </div>
-                <div class="eb-style-3">
-                    Melbourne to Singapore
-                </div>
-                <div class="eb-style-4">
-                    Emirates
-                </div>
-                <div class="eb-style-5">
-                    $1000
-                </div>
-            </div>
-        </div>
-        <div class="event-background">
-            <div class="event-background-row">
-                <div class="eb-style-1">
-                    Departure
-                </div>
-                <div class="eb-style-2">
-                    SIN 09:00 to MEL 19:00
-                </div>
-                <div class="eb-style-3">
-                    Singapore to Melbourne
-                </div>
-                <div class="eb-style-4">
-                    Emirates
-                </div>
-                <div class="eb-style-5">
-                    $1000
-                </div>
-            </div>
-            <div class="event-background-row second">
-                <div class="eb-style-1">
-                    Return
-                </div>
-                <div class="eb-style-2">
-                    SIN 11:00 to MEL 17:00
-                </div>
-                <div class="eb-style-3">
-                    Melbourne to Singapore
-                </div>
-                <div class="eb-style-4">
-                    Emirates
-                </div>
-                <div class="eb-style-5">
-                    $1000
-                </div>
-            </div>
+        <div id="content"class="event-background">
+            
         </div>
     </div>
 </div>
-{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+
+var destination; 
+
+$().ready(function() {
+    getFlightDetails();
+    $('.event-background').click(function() {
+        window.location.href = "/hotel";
+    })
+});
+
+function getDestination(){
+    destination = localStorage.getItem('destination');
+
+    if(destination == "Kobe"){
+        return "Japan";
+    }else if(destination == "Chiang Mai"){
+        return "Thailand";
+    }else if(destination == "Bangkok"){
+        return "Thailand";
+    }else if(destination == "Sydney"){
+        return "Australia";
+    }else if(destination == "Wagga Wagga"){
+        return "Australia";
+    }
+        
+}
+
+function getFlightDetails() {
+    $.ajax({
+            method: "GET",
+            url: "/getAllFlights?country=" + getDestination(),
+            async: false
+        })
+        .done(function(res) {
+            console.log(res);
+            var json = JSON.parse(res);
+            var destination = json[0].destination;
+            var fareInfo =  json[0].fareInfo;
+            var departureDateTime = fareInfo.DepartureDateTime;
+            var returnDateTime = fareInfo.ReturnDateTime;
+            var lowestFair = fareInfo.LowestFare.Fare;
+
+            console.log(json)
+
+            $('#content').append('<div class="event-background-row">' +
+                '<div class="eb-style-1">' +
+                    'Flight' +
+                '</div>' +
+                '<div class="eb-style-2">' +
+                    'SIN to '+ destination +
+                '</div>' +
+                '<div class="eb-style-1">' +
+                    departureDateTime+
+                '</div>' +
+                '<div class="eb-style-2">' +
+                    destination +' to SIN'+ 
+                '</div>' +
+                '<div class="eb-style-1">' +
+                    returnDateTime+
+                '</div>' +
+                '<div class="eb-style-5">SGD' +
+                    +lowestFair+' '+
+                '</div>' +
+            '</div>');
+        });
+}
+
+
+
+</script>
+{% endblock %}

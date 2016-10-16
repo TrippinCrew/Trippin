@@ -1,0 +1,124 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/byday.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="appresource/Leaflet/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="appresource/Leaflet/index.css" /
+<style>
+
+</style> {% endblock %} {% block content%}
+<div class="m-container">
+    <!-- ADD CONTENT HERE -->
+    <!-- Header -->
+    <div class="g-background-title m-center">
+        <a href="/fullItinerary"><span class="g-back"></span></a>
+        <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+    </div>
+    <!-- Page Content -->
+    <div class="g-page-content">
+        <div class="Progress-1 iti"></div>
+        <div>
+            <font class="txt-header">This is your</font>
+            <font class="txt-header text-style-1"> Trippin’ itinerary</font>
+            <font class="txt-header">for</font>
+            <font id="day-shower" class="txt-header text-style-1"> Day 1</font>
+        </div>
+        <div class="map-Holder">
+            <div id="map" class="map"></div>
+        </div>
+        <div id="event-holder" class="highlights-background-holder">
+            <!--  <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="highlights-background-row">
+                <div class="left-hightlights">
+                </div>
+                <div class="right-hightlights">
+                    <div class="right-hightlights-row">
+                        Marina Bay Sands
+                        <div>
+                            <span class="tags">Testing, asdasd, asdasdade, asdasd, asdasd</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+<script src="appresource/Leaflet/leaflet-routing-machine.min.js"></script>
+<script src="appresource/Leaflet/Control.Geocoder.js"></script>
+<script src="appresource/Leaflet/config.js"></script>
+<script>
+var itinerary;
+var day;
+
+
+$().ready(function() {
+    itinerary = JSON.parse(localStorage.getItem('json'));
+    day = getUrlParameter('day').split('.')[1];
+    $('#day-shower').text(" Day " + day)
+    populateUI();
+})
+
+function populateUI() {
+    console.log(day);
+    console.log("testing");
+    console.log(day);
+    console.log(itinerary[0]);
+    console.log(itinerary[0].length);
+    var itineraryForTheDay = itinerary[parseInt(day) - 1];
+    console.log(itineraryForTheDay);
+    for (var i = 0; i < itineraryForTheDay.length; i++) {
+        var cost;
+        if (itineraryForTheDay[i].price === 0) {
+            cost = "-";
+        } else {
+            cost = itineraryForTheDay[i].price;
+        }
+
+        $('#event-holder').append('<div class="highlights-background-row">' +
+            '<div class="left-hightlights" id="img_' + itineraryForTheDay[i]._id + '">' +
+            '</div>' +
+            '<div class="right-hightlights">' +
+            '<div class="right-hightlights-row">' +
+            itineraryForTheDay[i].name +
+            '</div>' +
+            '<div>' +
+            '<div class="tags">Arrival:' + itineraryForTheDay[i].arrivalTime + ' Depart: ' + itineraryForTheDay[i].departureTime + '\n Recommended Time:' + itineraryForTheDay[i].recommendedTime + ' | Cost: ' + cost + ' </div>' +
+            '<div>Order of travel: ' + (i + 1) + '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>')
+
+        $('#img_' + itineraryForTheDay[i]._id).append('<img style="width:100px; height:100px" src="' + itineraryForTheDay[i].picture + '"/>');
+    }
+};
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+ 
+</script>
+<script src="appresource/Leaflet/index.js"></script>
+{% endblock %}

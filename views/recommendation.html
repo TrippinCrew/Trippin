@@ -29,14 +29,34 @@
 </div>
 {% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
 <script>
+var travelDays;
+var cashFlow;
 $().ready(function() {
+    travelDays = (localStorage.getItem("travel-days"));
+    cashFlow = (localStorage.getItem("budget"));
+    initBtnListener();
     getUsersPref();
     getDistanceMatrix();
     getTop3Cities();
     yishyAPI(top3cities);
     populateTop3();
+
 });
 
+
+function initBtnListener() {
+    $('#recommend1-btn').click(function() {
+        localStorage.setItem('destination', $('#recommend1-btn').text());
+    });
+    $('#recommend2-btn').click(function() {
+        localStorage.setItem('destination', $('#recommend2-btn').text());
+    });
+    $('#recommend3-btn').click(function() {
+        localStorage.setItem('destination', $('#recommend3-btn').text());
+    });
+
+
+}
 var top3cities = [];
 var userPref = []; // [[like],[dislike],[remain]]
 var recommend1 = [
@@ -98,7 +118,7 @@ function yishyAPI(top3cities) {
             recommend1[1].push(dislike[i]);
         } else if (dislike[i].city == recomCity2) {
             recommend2[1].push(dislike[i]);
-        } 
+        }
         // else if (dislike[i].city == recomCity3) {
         //     recommend3[1].push(dislike[i]);
 
@@ -111,7 +131,7 @@ function yishyAPI(top3cities) {
             recommend1[2].push(remain[i]);
         } else if (remain[i].city == recomCity2) {
             recommend2[2].push(remain[i]);
-        } 
+        }
 
         // else if (remain[i].city == recomCity3) {
         //     recommend3[2].push(remain[i]);
@@ -193,24 +213,22 @@ var narrowCities = function(city, cityArray) {
     var travelData = [];
     var distanceData = [];
     var mustGo = "";
-    var cashFlow = 500;
-    var travelDays = 3;
     var startTime = 800;
     var endTime = 2300;
     for (var i = 0; i < attractions[0].length; i++) {
         // console.log(attractions[0][i]);
         travelData.push(attractions[0][i]);
         // console.log(travelData[length-1]);
-        travelData[travelData.length-1].id = travelData.length;
-        var category = travelData[travelData.length-1].category;
-        travelData[travelData.length-1].category = category.toString();
-        travelData[travelData.length-1].utility = travelData[travelData.length-1].utility * 10;
+        travelData[travelData.length - 1].id = travelData.length;
+        var category = travelData[travelData.length - 1].category;
+        travelData[travelData.length - 1].category = category.toString();
+        travelData[travelData.length - 1].utility = travelData[travelData.length - 1].utility * 10;
     }
     for (var j = 0; j < attractions[2].length; j++) {
         travelData.push(attractions[2][j]);
-        travelData[travelData.length-1].id = travelData.length;
-        var category = travelData[travelData.length-1].category;
-        travelData[travelData.length-1].category = category.toString();
+        travelData[travelData.length - 1].id = travelData.length;
+        var category = travelData[travelData.length - 1].category;
+        travelData[travelData.length - 1].category = category.toString();
     }
     for (var l = 0; l < travelData.length; l++) {
         for (var m = 0; m < travelData.length; m++) {
@@ -233,7 +251,7 @@ var narrowCities = function(city, cityArray) {
             }
         }
     }
-    
+
 
     // window.location.href = "/getSchedule?userid="+getUserId()+"&city="+city+"&mustGo="+mustGo+"&travelData="+travelDataStr+"&distanceData="+distanceDataStr;
 
@@ -247,14 +265,19 @@ var narrowCities = function(city, cityArray) {
                 userid: getUserId(),
                 mustGo: mustGo,
                 travelData: travelDataStr,
-                distanceData: distanceDataStr
+                distanceData: distanceDataStr,
+                travelDays: travelDays,
+                cashFlow: cashFlow
             }
         })
         .done(function(res) {
-            window.location.href="/itinerary";
+            console.log(res);
+
+            localStorage.setItem('json', JSON.stringify(res));
+
+            window.location.href = "/highlights";
 
         });
 };
-
 </script>
 {% endblock %}

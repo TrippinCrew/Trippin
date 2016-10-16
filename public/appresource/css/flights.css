@@ -26,13 +26,14 @@
 
 .event-background-row {
     width: 343px;
-    height: 115px;
+    padding-bottom:11px;
     background-color: #efefef;
     /*additional*/
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 11.2px;
     position: relative;
+
 }
 
 .event-background-row.second {

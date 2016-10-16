@@ -158,7 +158,9 @@
     padding-bottom: 0;
     padding-left: 5%;
     padding-right: 5%;
-    height: 420px;
+    /*height: 420px;*/
+    height: 347px;
+    margin-top: 21px;
 }
 
 #tinderslide .image {
@@ -194,7 +196,6 @@
     content: "\f08b";
 }
 
-
-.emu_css{
+.emu_css {
     border: 1px solid;
 }

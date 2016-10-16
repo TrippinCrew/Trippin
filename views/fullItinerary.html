@@ -1,0 +1,93 @@
+{% extends 'layout.html' %} {% block title %}{% parent %}{% endblock %} {% block head %} {% parent %}
+<link rel="stylesheet" href="appresource/css/fullItinerary.css"> {% endblock %} {% block content%}
+<div class="m-container">
+    <!-- ADD CONTENT HERE -->
+    <!-- Header -->
+    <div class="g-background-title m-center">
+        <a href="highlights"><span class="g-back"></span></a>
+        <h1 class="g-trippin">Trippin'</h1><span class="g-signout"></span>
+    </div>
+    <!-- Page Content -->
+    <div class="g-page-content">
+        <div class="Progress-1 iti"></div>
+        <div>
+            <font class="txt-header">Itinerary</font>
+        </div>
+        <div id="itinerary-holder" class="highlights-background-holder">
+            <!-- <div class="highlights-background-row">
+                <div class="row-1">
+                    Day 1
+                </div>
+                <div class="row-2">
+                    10/10/2016 - 3 Locations    
+                </div>
+                <div class="row-3">
+                    <span class="tag">asdasd, asdasd, dsad321, a3eadw</span>
+                </div>
+            </div>
+
+            <div class="highlights-background-row">
+                <div class="row-1">
+                    Day 2
+                </div>
+                <div class="row-2">
+                    10/10/2016 - 3 Locations    
+                </div>
+                <div class="row-3">
+                    <span class="tag">asdasd, asdasd, dsad321, a3eadw</span>
+                </div>
+            </div> -->
+        </div>
+        <!--     <a href="" class="blue-btn">
+            <div class="full-inti">
+                FULL ITINERARY
+            </div>
+        </a> -->
+        <a href="/flights" class="g-submit-btn">
+            <div class="g-submit marginTop16">
+                ACCEPT
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+var itinerary;
+
+$().ready(function() {
+    itinerary = JSON.parse(localStorage.getItem('json'));
+    populateUI();
+    $('div.day_info').click(function() {
+        window.location.href = "/byday?day=" + this.id;
+    })
+})
+
+function populateUI() {
+    var startTravelDate = new Date(localStorage.getItem('start-travel-date'));
+    var displayDate;
+    for (var i = 0; i < itinerary.length; i++) {
+        console.log("startTravelDate");
+        console.log(startTravelDate);
+
+        var curr_date = startTravelDate.getDate() + i;
+        var curr_month = startTravelDate.getMonth() + 1; //Months are zero based
+        var curr_year = startTravelDate.getFullYear();
+
+
+        var displayDate = curr_date + "/" + curr_month + "/" + curr_year;
+
+        $('#itinerary-holder').append('<div id="day.' + (i + 1) + '" class="highlights-background-row day_info">' +
+            '<div class="row-1">' +
+            'Day ' + (i + 1) +
+            '</div>' +
+            '<div class="row-2">' +
+            itinerary[i].length + ' Locations' +
+            '</div>' +
+            '<div class="row-3">' +
+            '<span class="tag">' + itinerary[i][1].category + '</span>' +
+            '</div>' +
+            '</div>');
+    }
+}
+</script>
+{% endblock %}

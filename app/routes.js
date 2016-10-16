@@ -74,25 +74,137 @@ module.exports = function(app, passport) {
     });
 
     app.get("/itinerary",function(req,res){
-        res.render('itinerary', {'itinerary': req.flash('itinerary')});
+        res.render('itinerary', {user: req.user});
     });
+
+app.get('/highlights', function(req, res) {
+        res.render('highlights', {user: req.user});
+    });
+
+    app.get('/fullItinerary',function(req,res){
+
+        res.render('fullItinerary');
+    });
+
+    app.get('/byday',function(req,res){
+
+        res.render('byday');
+    })
 
     // ****************** GETS END ******************** 
 
     // ****************** POST START ******************** 
     var request = require('request');
 
+    app.get('/api/getFlash', function(req,res){
+        var json = req.flash('itinerary');
+        res.render(json);
 
+    });
+
+    var SabreDevStudio = require('sabre-dev-studio');
+        var sabre = new SabreDevStudio({
+            client_id: 'V1:hskacf2ugrydi3ky:DEVCENTER:EXT',
+            client_secret: 'IG4x7ggB',
+            uri: 'https://api.test.sabre.com'
+
+        });
+
+        var HashMap = require("Hashmap");
+        app.get('/getAllFlights', function(req, res) {
+            var country = req.param('country', "Thailand");
+            var flights = new HashMap();
+            var count = 0;
+            var addFlight = function(data, maxCount) {
+                count++;
+                if (data.errorCode == undefined) {
+                    var a = data.Airports;
+                    for (i = 0; i < a.length; i++) {
+                        if (flights.get(a[i].code) == undefined) {
+                            flights.set(a[i].code, a[i]);
+                        }
+                    }
+                }
+                if (count == maxCount) {
+                    var flightsCount = flights.count();
+                    console.log("Flights Count:" + flightsCount);
+                    var iti = [];
+                    var addIti = function(data, lastIndex) {
+                            if (data.length > 0) {
+                                for (f = 0; f < data.length; f++) {
+                                    iti.push(data[f]);
+                                }
+                            }
+                            if (lastIndex == flightsCount) {
+                                res.send(JSON.stringify(iti));
+                            }
+                        }
+                        //console.log(JSON.stringify(flights));
+                    var f = 1;
+                    flights.forEach(function(value, key) {
+                        getFlights(key, f, addIti);
+                        f++;
+                    });
+                }
+            }
+
+
+
+            sabre.get("/v1/lists/utilities/geoservices/autocomplete", { query: country, category: "AIR" }, function(error, data) {
+                var obj = JSON.parse(data);
+                if (obj.Response != undefined) {
+                    var cities = obj.Response.grouped[Object.keys(obj.Response.grouped)[0]].doclist.docs;
+                    if (cities != undefined) {
+                        for (i = 0; i < cities.length; i++) {
+                            getAirports(cities[i].iataCityCode, addFlight, cities.length);
+                        }
+                    } else {
+                        res.send({ error: "No results" });
+                    }
+                } else {
+                    res.send({ error: "No results" })
+                }
+
+            });
+        });
+
+        function getAirports(cityCode, callback, lengthOfCities) {
+            sabre.get("/v1/lists/supported/cities/" + cityCode + "/airports", {}, function(error, data) {
+                callback(JSON.parse(data), lengthOfCities);
+            })
+        }
+
+        function getFlights(cityCode, lastIndex, callback) {
+            var today = new Date();
+            sabre.get("/v1/shop/flights/cheapest/fares/" + cityCode, { pointofsalecountry: "SG" }, function(error, data) {
+                var flightResponse = JSON.parse(data);
+                var result = [];
+                if (data.errorCode == undefined) {
+                    if (flightResponse != undefined && flightResponse.DestinationLocation != undefined) {
+                        var destinationCode = flightResponse.DestinationLocation;
+                        var fareInfo = flightResponse.FareInfo;
+                        for (i = 0; i < fareInfo.length; i++) {
+                            if (fareInfo[i].OriginLocation == "SIN") {
+                                result.push({ destination: destinationCode, fareInfo: fareInfo[i] });
+                            }
+                        }
+                    }
+                }
+                callback(result, lastIndex);
+            });
+        }
 
     app.post('/api/getSchedule', function(req, res) {
         var userid = req.body.userid;
         var mustGo = req.body.mustGo;
         var travelData = req.body.travelData;
         var distanceData = req.body.distanceData;
-        console.log(mustGo);
+        var travelDays = req.body.travelDays;
+        var cashFlow = req.body.cashFlow;
+        console.log(travelDays);
         var formData = {
-            cashFlow: 999999,
-            travelDays: 3,
+            cashFlow: cashFlow,
+            travelDays: 5,
             startTime: 800,
             endTime: 2300,
             startAddress: -1,
@@ -109,8 +221,11 @@ module.exports = function(app, passport) {
                 throw err;
             }
             // res.json(JSON.parse(body));
+
+
             console.log(JSON.parse(body));
-            req.flash("itinerary", JSON.parse(body));
+
+
             res.json(JSON.parse(body));
             /* ... */
         });

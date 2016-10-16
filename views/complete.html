@@ -29,7 +29,7 @@
                         <a href="#" class="btn btn-block btn-primary btn-blue">VIEW TRIP</a>
 					</div>
 					<div class="col-xs-6">
-                        <a href="#" class="btn btn-block btn-primary btn-green">I'M DONE</a>
+                        <a href="#" id="imdone" class="btn btn-block btn-primary btn-green">I'M DONE</a>
 					</div>
 				</div>
 			</div>
@@ -37,4 +37,10 @@
 	</div>
 </div>
 
-{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+
+<script>
+$('#imdone').click(function(){
+	alert('Good-bye');
+})
+</script> {% endblock %}

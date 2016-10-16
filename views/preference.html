@@ -11,25 +11,26 @@
         <div class="date-content">
             <div class="Travel-Period">Travel Period</div>
             <div class="period-holder">
-                <span class="icon-holder"><span class="calendar"></span></span>
-                <input id="input-start-period" class="txt-bx" type="text" placeholder="&nbsp;&nbsp;Starting date of trip" />
+                <span class="icon-holder"><span class="num"></span></span>
+                <input id="input-days-travel" class="txt-bx" type="number"  placeholder="&nbsp;&nbsp;# of days travelling" />
             </div>
             </br>
-            </br>
+            <!-- <div class="t-center" style="font-weight:bold">
+                </br>to</div>
             <div class="period-holder">
                 <span class="icon-holder"><span class="calendar"></span></span>
-                <input id="input-end-period" class="txt-bx" type="text" placeholder="&nbsp;&nbsp;Starting date of trip" />
-            </div>
+                <input id="input-end-period" class="txt-bx" type="date" value="12/11/16" placeholder="&nbsp;&nbsp;Starting date of trip" />
+            </div> -->
         </div>
         <div class="budget-content">
             <div class="Travel-Period">Budget</div>
             <div class="period-holder">
                 <span class="icon-holder"><span class="calendar"></span></span>
-                <input id="input-budget" class="txt-bx" type="text" placeholder="&nbsp;&nbsp;Starting date of trip" />
+                <input id="input-budget" class="txt-bx" value  type="number" placeholder="&nbsp;&nbsp;Set Budget" />
             </div>
         </div>
         <div class="action-btn-holder">
-            <a href="/recommendation" class="g-submit-btn">
+            <a id="submit" class="g-submit-btn">
                 <div class="g-submit">
                     I'M ALL SET
                 </div>
@@ -37,4 +38,28 @@
         </div>
     </div>
 </div>
-{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %} {% endblock %}
+{% endblock %} {% block footer %} {% parent %} {% endblock %} {% block scripts %} {% parent %}
+<script>
+$('#submit').click(function() {
+
+    // var startdate = $('#input-start-period').val();
+    // var enddate = $('#input-end-period').val();
+    var daysTravel = $('#input-days-travel').val();
+    var budget = $('#input-budget').val();
+
+    // var date1 = new Date(startdate);
+    // var date2 = new Date(enddate);
+    // var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    // var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    // diffDays += 1;
+
+    // localStorage.setItem("start-travel-date", startdate);
+    // localStorage.setItem("end-travel-date", enddate);
+    localStorage.setItem("travel-days", daysTravel);
+    localStorage.setItem("budget", budget);
+
+
+    window.location.href = "/recommendation";
+})
+</script>
+{% endblock %}

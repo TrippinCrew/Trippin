@@ -1,0 +1,96 @@
+.txt-header {
+  height: 19px;
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #4d5153;
+}
+
+.txt-header.text-style-1 {
+  color: #297fe4;
+}
+
+.highlights-background-holder {
+    margin-top: 19px;
+}
+
+.highlights-background-row {
+    width: 343px;
+    height: 100px;
+    background-color: #efefef;
+    position: relative;
+    margin-top: 16px;
+    text-overflow: ellipsis;
+    overflow-y: hidden;
+}
+
+.right-hightlights {
+    width: 218px;
+    height: 100px;
+    padding-left: 17px;
+    padding-top: 10px;
+    /*additional*/
+    float: left;
+}
+
+.right-hightlights-row {
+    height: 19px;
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #4d5153;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.left-hightlights {
+    width: 100px;
+    height: 100px;
+    /*additional*/
+    float: left;
+    background: url('https://www.ciee.org/teach/images/programs/vietnam/teach-in-vietnam/vietnam-1.jpg');
+}
+
+.tags {
+    /*padding: 3px;
+	border-radius: 2px;
+	background-color: #818a91;*/
+    font-family: HelveticaNeue;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    /*line-height: 1.2;*/
+    text-align: left;
+    /*color: #ffffff;*/
+    /*border: 2px solid #4d5153;*/
+}
+
+.blue-btn {
+    width: 343px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #0275d8;
+    border: solid 1px #0275d8;
+    text-align: center;
+    line-height: 2;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.full-inti {
+    height: 19px;
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #ffffff;
+}
